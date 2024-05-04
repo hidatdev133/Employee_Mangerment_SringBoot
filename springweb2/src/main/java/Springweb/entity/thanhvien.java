@@ -1,29 +1,48 @@
 package Springweb.entity;
 
+import com.sun.istack.NotNull;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Entity
 @Table
-@Entity (name = "thanhvien")
 public class thanhvien {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MaTV", nullable = false)
     private Integer MaTV;
+    
+    @Column(name = "Hoten", nullable = false)
     private String Hoten;
+    
+    @Column(name = "Khoa", nullable = true)
     private String Khoa;
-    private String NganhString;
+    
+    @Column(name = "Nganh", nullable = true)
+    private String Nganh;
+    
+    @Column(name = "SDT", nullable = true)
     private Integer SDT;
+    
+    @Column(name = "Password", nullable = false)
     private String PassWord;
+    
+    @Column(name = "Email", nullable = false)
     private String Email;
 
     public thanhvien() {
     }
 
-    public thanhvien(Integer MaTV, String Hoten, String Khoa, String NganhString, Integer SDT, String PassWord, String Email) {
+    public thanhvien(Integer MaTV, String Hoten, String Khoa, String Nganh, Integer SDT, String PassWord, String Email) {
         this.MaTV = MaTV;
         this.Hoten = Hoten;
         this.Khoa = Khoa;
-        this.NganhString = NganhString;
+        this.Nganh = Nganh;
         this.SDT = SDT;
         this.PassWord = PassWord;
         this.Email = Email;
@@ -53,12 +72,12 @@ public class thanhvien {
         this.Khoa = Khoa;
     }
 
-    public String getNganhString() {
-        return NganhString;
+    public String getNganh() {
+        return Nganh;
     }
 
-    public void setNganhString(String NganhString) {
-        this.NganhString = NganhString;
+    public void setNganh(String Nganh) {
+        this.Nganh = Nganh;
     }
 
     public Integer getSDT() {
@@ -84,6 +103,5 @@ public class thanhvien {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-    
-    
+
 }

@@ -1,19 +1,26 @@
 package Springweb.entity;
 
+import com.sun.istack.NotNull;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "thietbi")
-@Table
+@Entity
+@Table(name = "thietbi")
 public class thietbi {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MaTB", nullable = false)
     private Integer MaTB;
+
+    @Column(name = "TenTB", nullable = false)
     private String TenTB;
+
+    @Column(name = "MoTaTB", nullable = true)
     private String MoTaTB;
 
     public thietbi() {

@@ -14,17 +14,17 @@ public class thietbiServiceImpl implements thietbiService {
     private thietbiRepository tbRepository;
 
     @Override
-    public List<thietbi> getAllThietbi() {
-        return (List<thietbi>) tbRepository.findAll();
-    }
-
-    @Override
     public Optional<thietbi> findById(Integer id) {
         return tbRepository.findById(id);
     }
 
     @Override
-    public boolean existsById(Integer id) {   
+    public Iterable<thietbi> findAll() {
+        return tbRepository.findAll();
+    }
+
+    @Override
+    public boolean existsById(Integer id) {
         return tbRepository.existsById(id);
     }
 

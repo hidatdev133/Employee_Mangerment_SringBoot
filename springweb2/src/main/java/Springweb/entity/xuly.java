@@ -1,20 +1,36 @@
 package Springweb.entity;
 
+import com.sun.istack.NotNull;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Entity
 @Table
-@Entity(name = "xyly")
 public class xuly {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MaXL", nullable = false)
     private Integer MaXL;
+
+    @Column(name = "MaTV", nullable = false)
     private Integer MaTV;
+
+    @Column(name = "HinhThucXL", nullable = true)
     private String HinhThucXL;
+
+    @Column(name = "SoTien", nullable = true)
     private Integer SoTien;
+
+    @Column(name = "NgayXL", nullable = true)
     private Date NgayXL;
+
+    @Column(name = "TrangThaiXL", nullable = true)
     private Integer TrangThaiXL;
 
     public xuly() {

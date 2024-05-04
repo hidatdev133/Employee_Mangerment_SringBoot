@@ -86,18 +86,24 @@
             <h1 class="text-center">PRODUCTS</h1>
             <div class="row" style="margin-top: 30px;">
                 <!-- Vòng lặp để hiển thị từng sản phẩm -->
-                <div class="col-md-3 py-3 py-md-0" th:each="tb : ${listThietbi}">
-                    <div class="card">
+                <div class="col-md-3 py-3 py-md-0"  th:each="tb : ${listThietbi}">
+                    <div class="card" th:each="ttsd: ${listThongtinsd}">
                         <img src="./images/p6.png" alt="">
                         <div class="card-body">
+                            <h3 class="text-center" th:text="${tb.MaTB}"></h3>
                             <h3 class="text-center" th:text="${tb.TenTB}"></h3>
-                            <p class="text-center" th:text="${tb.MoTaTB}"></p>
-                            <h2>Trạng thái: <span><li class="fa-solid fa-cart-shopping"></li></span></h2>
+                            <!--<h3 class="text-center" th:text="${tb.MoTaTB}"></h3>-->
+                            <div style="display: flex; align-items: center;">
+                                <h2>Trạng thái: <span th:text="${ttsd.trangThai}" style="padding-left: 5px; border: 1px solid black; background: black; color: white"></span></h2>
+                                <h2 style="margin-left: 10px; padding-left: 40px"><span><li class="fa-solid fa-cart-shopping"></li></span></h2>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- product cards -->
 
 

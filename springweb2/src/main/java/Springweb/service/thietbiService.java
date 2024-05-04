@@ -6,13 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public interface thietbiService {
-    @Autowired
+
     public Optional<thietbi> findById(Integer MaTB);
-    
+
+    public Iterable<thietbi> findAll();
+
     public boolean existsById(Integer MaTB);
-    
-    public List<thietbi> getAllThietbi();
-    
+
     public long count();
 
     public void deleteById(Integer MaTB);

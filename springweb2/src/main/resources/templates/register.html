@@ -20,47 +20,47 @@
 
      <h2>Sign Up</h2> 
 
-     <div class="form"> 
+     <form th:action="@{/member/checkregister}" th:object="${tv}" method="post"> 
+        <div class="inputBox"> 
+          <input type="text" name="matv" maxlength="10" id="matv" oninput="validateMatv(this)" th:field="*{MaTV}" required> 
+          <i>MaTV</i>
+          <div id="matvError" style="color: red; display: none;"></div>
+        </div> 
 
-      <div class="inputBox"> 
-        <input type="text" name="matv" maxlength="10" oninput="validateMatv(this)" required> 
-        <i>MaTV</i>
-        <div id="matvError" style="color: red; display: none;">Vui lòng chỉ nhập số</div>
-      </div> 
-         
-      <div class="inputBox"> 
-       <input type="text" name="hoten" required> <i>HoTen</i> 
-      </div>  
-         
-      <div class="inputBox"> 
-       <input type="text" name="khoa"> <i>Khoa</i> 
-      </div> 
-         
-      <div class="inputBox"> 
-       <input type="text" name="nganh" > <i>Nganh</i> 
-      </div> 
-      
-      <div class="inputBox"> 
-       <input type="text" name="sdt" > <i>SĐT</i> 
-      </div>    
-       
-      <div class="inputBox"> 
-       <input type="password" name="password" required> <i>Password</i> 
-      </div> 
-         
-      <div class="inputBox"> 
-        <input type="email" name="gmail" oninput="validateGmail(this)" placeholder="...@gmail.com" required>
-        <i>Gmail</i> 
-        <div id="gmailError" style="color: red; display: none;">Vui lòng nhập đúng định dạng email</div>
-    </div>  
+        <div class="inputBox"> 
+         <input type="text" name="hoten" th:field="*{ho_ten}" required> <i>HoTen</i> 
+        </div>  
 
-      <div class="links"> <a href="/login">I always have account</a></div> 
+        <div class="inputBox"> 
+         <input type="text" name="khoa" th:field="*{Khoa}" required> <i>Khoa</i> 
+        </div> 
 
-      <div class="inputBox"> 
-       <input type="submit" value="Register"> 
-      </div> 
+        <div class="inputBox"> 
+         <input type="text" name="nganh" th:field="*{Nganh}" required> <i>Nganh</i> 
+        </div> 
 
-     </div> 
+        <div class="inputBox"> 
+         <input type="text" name="sdt" maxlength="10" th:field="*{SDT}" oninput="validatePhoneNumber(this)" required> 
+         <i>SĐT</i> 
+         <div id="phoneNumberError" style="color: red; display: none;"></div>
+        </div>    
+
+        <div class="inputBox"> 
+         <input type="password" name="password" th:field="*{pass_word}" required> <i>Password</i> 
+        </div> 
+
+        <div class="inputBox"> 
+          <input type="email" name="email" id="email" oninput="validateGmail(this)" th:field="*{Email}" required>
+          <i>Email</i> 
+          <div id="emailError" style="color: red; display: none;">Vui lòng nhập đúng định dạng email</div>
+          </div>  
+
+        <div class="links"> <a href="/login">I always have account</a></div> 
+        <p style="color: red" th:text="${ERROR}"></p>
+        <div class="inputBox"> 
+         <input type="submit" value="Register"> 
+        </div> 
+     </form> 
 
     </div> 
 
@@ -72,30 +72,48 @@
 <script>
     function validateMatv(input) {
         var matvInput = input.value;
-        var matvPattern = /^[0-9]{1,10}$/;
+        var matvPattern = /^[0-9]{10}$/; 
         var matvError = document.getElementById('matvError');
 
         if (matvInput.trim() === '') {
             matvError.style.display = 'none';
-        } else if (!matvPattern.test(matvInput)) {
+        } else if (!matvPattern.test(matvInput)|| matvInput.length < 10) {
+            matvError.innerText = 'MaTV phải nhập số và có đủ 10 số';
             matvError.style.display = 'block';
-        } else {
+        }  else {
             matvError.style.display = 'none';
         }
     }
+
     
     function validateGmail(input) {
-        var gmailInput = input.value;
-        var gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-        var gmailError = document.getElementById('gmailError');
+        var emailInput = input.value;
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        var emailError = document.getElementById('emailError');
 
-        if (gmailInput.trim() === '') {
-            gmailError.style.display = 'none';
-        } else if (!gmailPattern.test(gmailInput)) {
-            gmailError.style.display = 'block';
+        if (emailInput.trim() === '') {
+            emailError.style.display = 'none';
+        } else if (!emailPattern.test(emailInput)) {
+            emailError.style.display = 'block';
         } else {
-            gmailError.style.display = 'none';
+            emailError.style.display = 'none';
         }
     }
+    
+    function validatePhoneNumber(input) {
+        var phoneNumberInput = input.value;
+        var phoneNumberPattern = /^(0\d{9})$/; 
+        var phoneNumberError = document.getElementById('phoneNumberError');
+
+        if (phoneNumberInput.trim() === '') {
+            phoneNumberError.style.display = 'none';
+        } else if (phoneNumberInput.length < 10||!phoneNumberPattern.test(phoneNumberInput)) {
+            phoneNumberError.innerText = 'chỉ nhập số và SDT có 10 số';
+            phoneNumberError.style.display = 'block';
+        } else {
+            phoneNumberError.style.display = 'none';
+        }
+    }
+
 </script>
 </html>

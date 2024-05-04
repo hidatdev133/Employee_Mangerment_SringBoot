@@ -1,0 +1,28 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Springweb.service;
+
+import Springweb.entity.thanhvien;
+import org.springframework.stereotype.Service;
+
+/**
+ *
+ * @author Dat dep trai
+ */
+@Service
+public interface MembersService {
+    
+   boolean checkLogin(int matv, String password);
+   
+   boolean checkRegister(thanhvien tv);
+   
+   boolean checkEmail(int matv, String email);
+   
+   String getEmail(String email);
+   
+   String getEmail2(int matv);
+   
+   void updatePassword(int matv, String newPassword);
+}

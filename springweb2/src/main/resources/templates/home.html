@@ -20,7 +20,7 @@
 
         <!-- top navbar -->
         <div class="top-navbar">
-            <p>WELCOME TO OUR SHOP</p>
+            <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
             <div class="icons">
                 <a href="login.html"><img src="./images/register.png" alt="" width="18px">Login</a>
                 <a href="register.html"><img src="./images/register.png" alt="" width="18px">Register</a>
@@ -38,16 +38,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Product</a>
+                            <a class="nav-link" href="#product-cards">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="#footer">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="#footer">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="cart.html">
@@ -86,18 +86,19 @@
             <h1 class="text-center">PRODUCTS</h1>
             <div class="row" style="margin-top: 30px;">
                 <!-- Vòng lặp để hiển thị từng sản phẩm -->
-                <div class="col-md-3 py-3 py-md-0"  th:each="tb : ${listThietbi}">
-                    <div class="card" th:each="ttsd: ${listThongtinsd}">
+                <div class="col-md-3 py-3 py-md-0" th:each="item, iterStat : ${listThietbi}">
+                    <!-- Kiểm tra xem có phần tử tương ứng trong danh sách thongtinsd hay không -->
+                    <div class="card" th:if="${iterStat.index} &lt; ${listThongtinsd.size()}">
+                        <!-- Lấy thông tin sản phẩm từ danh sách thietbi -->
                         <img src="./images/p6.png" alt="">
                         <div class="card-body">
-                            <h3 class="text-center" th:text="${tb.MaTB}"></h3>
-                            <h3 class="text-center" th:text="${tb.TenTB}"></h3>
-                            <!--<h3 class="text-center" th:text="${tb.MoTaTB}"></h3>-->
+                            <h3 class="text-center" th:text="${item.MaTB}"></h3>
+                            <h3 class="text-center" th:text="${item.TenTB}"></h3>
+                            <!-- Lấy thông tin trạng thái từ danh sách thongtinsd -->
                             <div style="display: flex; align-items: center;">
-                                <h2>Trạng thái: <span th:text="${ttsd.trangThai}" style="padding-left: 5px; border: 1px solid black; background: black; color: white"></span></h2>
+                                <h2>Trạng thái: <span th:text="${listThongtinsd[iterStat.index].trangThai}" style="padding-left: 5px; border: 1px solid black; background: black; color: white"></span></h2>
                                 <h2 style="margin-left: 10px; padding-left: 40px"><span><li class="fa-solid fa-cart-shopping"></li></span></h2>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -210,9 +211,7 @@
             </div>
         </footer>
         <!-- footer -->
-
         <a href="#" class="arrow"><i><img src="./images/arrow.png" alt=""></i></a>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     </body>

@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Springweb.controller;
 
 import Springweb.entity.thanhvien;
-import Springweb.repository.MembersRepository;
-import Springweb.service.MembersService;
 import Springweb.util.ForgotPassWordEmail;
 import Springweb.util.UpdatePassWordEmail;
 import javax.servlet.http.HttpSession;
@@ -17,14 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import Springweb.repository.thanhvienRepository;
+import Springweb.service.thanhvienService;
 
 @Controller
-public class MembersController {
+public class thanhvienController {
     @Autowired
-    private MembersService memberService;
+    private thanhvienService memberService;
     
     @Autowired
-    private MembersRepository memberRopository;
+    private thanhvienRepository memberRopository;
     
     @Autowired
     private ForgotPassWordEmail sendemail;
@@ -32,10 +29,12 @@ public class MembersController {
     @Autowired
     private UpdatePassWordEmail sendemail2;
     
+
     @GetMapping("/login")
-    public String loginForm(HttpSession session){
-        if(session.getAttribute("USERNAME") != null) 
+    public String loginForm(HttpSession session) {
+        if (session.getAttribute("USERNAME") != null) {
             return "home";
+        }
         return "login";
     }
     
@@ -52,9 +51,12 @@ public class MembersController {
          }
      }
     
+
     @GetMapping("/register")
-    public String registerForm(HttpSession session,Model model){
-        model.addAttribute("tv", new thanhvien());
+    public String registerForm(HttpSession session) {
+        if (session.getAttribute("USERNAME") != null) {
+            return "home";
+        }
         return "register";
     }
     

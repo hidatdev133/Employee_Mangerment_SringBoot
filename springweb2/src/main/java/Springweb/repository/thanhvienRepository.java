@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MembersRepository  extends CrudRepository<thanhvien, Integer>{ 
+public interface thanhvienRepository  extends CrudRepository<thanhvien, Integer>{ 
 
     
     @Query("SELECT t FROM thanhvien t WHERE t.MaTV = ?1 AND t.pass_word = ?2")

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @author Dat dep trai
  */
 @Service
-public interface MembersService {
+public interface thanhvienService {
     
    boolean checkLogin(int matv, String password);
    

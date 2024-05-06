@@ -1,6 +1,5 @@
 package Springweb.util;
 
-import Springweb.service.MembersService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +8,12 @@ import org.springframework.stereotype.Component;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
+import Springweb.service.thanhvienService;
 
 @Component
 public class ForgotPassWordEmail {
     @Autowired
-    private MembersService membersService; 
+    private thanhvienService membersService; 
 
     public void sendPasswordByEmail(String toEmail) {
         String fromEmail = "datdeptrai30114@gmail.com"; 

@@ -5,15 +5,15 @@
 package Springweb.service;
 
 import Springweb.entity.thanhvien;
-import Springweb.repository.MembersRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import Springweb.repository.thanhvienRepository;
 
 @Service
-public class MembersServicelmpl implements MembersService{
+public class thanhvienServicelmpl implements thanhvienService{
     @Autowired
-    private MembersRepository membersRepository;
+    private thanhvienRepository membersRepository;
     
     
     @Override
@@ -52,7 +52,7 @@ public class MembersServicelmpl implements MembersService{
         Optional<thanhvien> optionalThanhVien = membersRepository.findById(matv);
         if (optionalThanhVien.isPresent()) {
             thanhvien thanhVien = optionalThanhVien.get();
-            thanhVien.setpass_word(newPassword);
+            thanhVien.setPass_word(newPassword);
             membersRepository.save(thanhVien);
         } else {
             // Xử lý trường hợp không tìm thấy thành viên

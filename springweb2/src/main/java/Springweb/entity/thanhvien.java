@@ -32,7 +32,7 @@ public class thanhvien implements Serializable {
     
    @NotNull
     private String Email;
-    
+
     public int getMaTV() {
         return MaTV;
     }
@@ -41,11 +41,11 @@ public class thanhvien implements Serializable {
         this.MaTV = MaTV;
     }
 
-    public String getho_ten() {
+    public String getHo_ten() {
         return ho_ten;
     }
 
-    public void setho_ten(String ho_ten) {
+    public void setHo_ten(String ho_ten) {
         this.ho_ten = ho_ten;
     }
 
@@ -73,12 +73,12 @@ public class thanhvien implements Serializable {
         this.SDT = SDT;
     }
 
-    public String getpass_word() {
+    public String getPass_word() {
         return pass_word;
     }
 
-    public void setpass_word(String PassWord) {
-        this.pass_word = PassWord;
+    public void setPass_word(String pass_word) {
+        this.pass_word = pass_word;
     }
 
     public String getEmail() {
@@ -88,5 +88,4 @@ public class thanhvien implements Serializable {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-    
 }

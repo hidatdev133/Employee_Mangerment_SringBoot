@@ -1,67 +1,59 @@
-package Springweb.entity;
+package springweb.entity;
 
 import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package springweb.entity;
+
+import com.sun.istack.NotNull;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
-public class thanhvien {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "MaTV", nullable = false)
-    private Integer MaTV;
+@Table(name = "thanhvien")
+public class thanhvien implements Serializable {
+   @Id
+    private int MaTV;
     
-    @Column(name = "Hoten", nullable = false)
-    private String Hoten;
+   @NotNull
+    private String ho_ten;
     
-    @Column(name = "Khoa", nullable = true)
     private String Khoa;
     
-    @Column(name = "Nganh", nullable = true)
     private String Nganh;
     
-    @Column(name = "SDT", nullable = true)
-    private Integer SDT;
+   @NotNull
+    private int SDT;
     
-    @Column(name = "Password", nullable = false)
-    private String PassWord;
+   @NotNull
+    private String pass_word;
     
-    @Column(name = "Email", nullable = false)
+   @NotNull
     private String Email;
 
-    public thanhvien() {
-    }
-
-    public thanhvien(Integer MaTV, String Hoten, String Khoa, String Nganh, Integer SDT, String PassWord, String Email) {
-        this.MaTV = MaTV;
-        this.Hoten = Hoten;
-        this.Khoa = Khoa;
-        this.Nganh = Nganh;
-        this.SDT = SDT;
-        this.PassWord = PassWord;
-        this.Email = Email;
-    }
-
-    public Integer getMaTV() {
+    public int getMaTV() {
         return MaTV;
     }
 
-    public void setMaTV(Integer MaTV) {
+    public void setMaTV(int MaTV) {
         this.MaTV = MaTV;
     }
 
-    public String getHoten() {
-        return Hoten;
+    public String getHo_ten() {
+        return ho_ten;
     }
 
-    public void setHoten(String Hoten) {
-        this.Hoten = Hoten;
+    public void setHo_ten(String ho_ten) {
+        this.ho_ten = ho_ten;
     }
 
     public String getKhoa() {
@@ -94,6 +86,20 @@ public class thanhvien {
 
     public void setPassWord(String PassWord) {
         this.PassWord = PassWord;
+    public int getSDT() {
+        return SDT;
+    }
+
+    public void setSDT(int SDT) {
+        this.SDT = SDT;
+    }
+
+    public String getPass_word() {
+        return pass_word;
+    }
+
+    public void setPass_word(String pass_word) {
+        this.pass_word = pass_word;
     }
 
     public String getEmail() {
@@ -104,4 +110,5 @@ public class thanhvien {
         this.Email = Email;
     }
 
+}
 }

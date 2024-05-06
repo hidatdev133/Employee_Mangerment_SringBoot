@@ -1,21 +1,28 @@
-package Springweb.service;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package springweb.service;
 
 import Springweb.entity.thanhvien;
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
+/**
+ *
+ * @author Dat dep trai
+ */
+@Service
 public interface thanhvienService {
-
-    public Optional<thanhvien> findById(Integer MaTV);
-
-    public Iterable<thanhvien> findAll();
-
-    public boolean existsById(Integer MaTV);
-
-    public long count();
-
-    public void deleteById(Integer MaTV);
-
-    public void delete(thanhvien entity);
-
-    public void deleteAll();
+    
+   boolean checkLogin(int matv, String password);
+   
+   boolean checkRegister(thanhvien tv);
+   
+   boolean checkEmail(int matv, String email);
+   
+   String getEmail(String email);
+   
+   String getEmail2(int matv);
+   
+   void updatePassword(int matv, String newPassword);
 }

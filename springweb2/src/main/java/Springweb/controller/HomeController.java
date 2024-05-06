@@ -1,4 +1,4 @@
-package Springweb.controller;
+package springweb.controller;
 
 import Springweb.entity.thietbi;
 import Springweb.entity.thongtinsd;
@@ -13,6 +13,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package springweb.controller;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -51,6 +58,5 @@ public class HomeController {
             }
             model.addAttribute("listThongtinsd", listTtsd);
         }
-        return "home";
     }
 }

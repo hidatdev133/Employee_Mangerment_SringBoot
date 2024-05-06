@@ -4,11 +4,12 @@
  */
 package Springweb.service;
 
-import Springweb.entity.thanhvien;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import Springweb.repository.thanhvienRepository;
+import springweb.entity.thanhvien;
+import springweb.service.thanhvienService;
+import springweb.repository.thanhvienRepository;
 
 @Service
 public class thanhvienServicelmpl implements thanhvienService{

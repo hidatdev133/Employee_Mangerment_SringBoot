@@ -4,8 +4,8 @@
  */
 package springweb.service;
 
-import Springweb.entity.thanhvien;
 import org.springframework.stereotype.Service;
+import springweb.entity.thanhvien;
 
 /**
  *

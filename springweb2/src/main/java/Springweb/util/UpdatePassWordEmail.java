@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
-import Springweb.service.thanhvienService;
+import springweb.service.thanhvienService;
 
 @Component
 public class UpdatePassWordEmail {

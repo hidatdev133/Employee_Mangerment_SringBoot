@@ -1,14 +1,5 @@
 package springweb.controller;
 
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class thanhvienController {
-    
-
-package Springweb.controller;
-
-import Springweb.entity.thanhvien;
 import Springweb.util.ForgotPassWordEmail;
 import Springweb.util.UpdatePassWordEmail;
 import javax.servlet.http.HttpSession;
@@ -19,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import Springweb.repository.thanhvienRepository;
-import Springweb.service.thanhvienService;
+import springweb.entity.thanhvien;
+import springweb.repository.thanhvienRepository;
+import springweb.service.thanhvienService;
+
 
 @Controller
 public class thanhvienController {
@@ -125,4 +118,3 @@ public class thanhvienController {
     }   
 }
 
-}

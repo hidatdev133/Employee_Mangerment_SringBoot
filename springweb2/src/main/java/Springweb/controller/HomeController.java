@@ -2,7 +2,6 @@ package springweb.controller;
 
 import Springweb.entity.thietbi;
 import Springweb.entity.thongtinsd;
-import Springweb.repository.thanhvienRepository;
 import Springweb.repository.thietbiRepository;
 import Springweb.repository.thongtinsdRepository;
 import Springweb.repository.xulyRepository;
@@ -17,10 +16,10 @@ import org.springframework.ui.Model;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package springweb.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import springweb.repository.thanhvienRepository;
 
 @Controller
 public class HomeController {
@@ -58,5 +57,6 @@ public class HomeController {
             }
             model.addAttribute("listThongtinsd", listTtsd);
         }
+        return "home";
     }
 }

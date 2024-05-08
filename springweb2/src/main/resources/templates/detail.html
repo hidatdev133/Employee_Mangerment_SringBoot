@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#product-cards">Products</a>
@@ -45,7 +45,7 @@
                             <a class="nav-link" href="#footer">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart.html">
+                            <a class="nav-link" href="cart">
                                 <span class="fa-solid fa-cart-shopping"></span>
                             </a>
                         </li>
@@ -74,26 +74,41 @@
                         <div class="">
                             
                             
-                            <h3 class="" th:text="${item.MaTB}"></h3>
-                            <h3 class="" th:text="${item.TenTB}"></h3>
+                            <h3><p>Mã thiết bị: <span th:text="${item.maTB}"></span></p></h3>
+                            <h3><p>Tên thiết bị: <span th:text="${item.tenTB}"></span></p></h3>
+                            <h3><p>Mô tả: <span th:text="${item.moTaTB}"></span></p></h3>
+
                              <!-- Pikaday calendar -->
                             <div class="py-3 py-md-0" style="margin-top: 30px;">
                                 <div class="row">
                                     <div class="">
-                                        <h3 class="">Choose Date</h3>
-                                        <input type="text" id="datepicker" class="form-control text-center" placeholder="Select date..." style="margin-bottom: 20px; width: 300px;">
+                                        <h3 class="">Chọn ngày và giờ đặt chỗ</h3>
+                                        <input style="margin-left: 50px" type="datetime-local" id="bookingDateTime" name="bookingDateTime">
                                     </div>
                                 </div>
                             </div>
                             <!-- Pikaday calendar -->
-                            <div style="display: flex;">
-                                <h2>Trạng thái: <span th:text="${listThongtinsd[iterStat.index].trangThai}" style="padding-left: 5px; border: 1px solid black; background: black; color: white"></span></h2>
+                            <div style="display: flex; margin-top: 20px">
+                                <h2>Trạng thái: <span th:text="${listThongtinsd[iterStat.index].trangThai}" style="padding-left: 5px; border: 1px solid black; background: black; color: white;"></span></h2>
+                            </div>
+                            
+                             
+                            
+                            <div class="btn"><button id="book-now-btn"> Book now</button></div>
+                                
+                            <div id="alertMessage" class="alert alert-success" style="display: none;">
+                                Đặt chỗ thành công
+                            </div>
+
+                            <div id="invalidDateTimeAlert" class="alert alert-danger" style="display: none;">
+                                Thời gian đặt chổ không hợp lệ.
                             </div>
                         </div>
+
+                        
+
                     </div>
                 </div>
-                
-               
             </div>
         </div>
         <!-- product cards -->
@@ -113,11 +128,31 @@
         <!-- Pikaday JS -->
         <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
         <script>
-            var picker = new Pikaday({
-                field: document.getElementById('datepicker'),
-                format: 'YYYY-MM-DD',
-                onSelect: function(date) {
-                    console.log('Selected date: ' + date);
+//            var picker = new Pikaday({
+//                field: document.getElementById('datepicker'),
+//                format: 'YYYY-MM-DD',
+//                onSelect: function(date) {
+//                    console.log('Selected date: ' + date);
+//                }
+//            });
+            
+            document.getElementById('book-now-btn').addEventListener('click', function() {
+                var bookingDateTime = document.getElementById('bookingDateTime').value;
+                if (!bookingDateTime) {
+                    alert('Bạn cần chọn ngày và giờ đặt chỗ.');
+                } else {
+                    var currentDate = new Date();
+                    var selectedDateTime = new Date(bookingDateTime);
+                    if (selectedDateTime <= currentDate) {
+                        document.getElementById('invalidDateTimeAlert').style.display = 'block';
+                        document.getElementById('alertMessage').style.display = 'none';
+                    } else {
+                        document.getElementById('invalidDateTimeAlert').style.display = 'none';
+                        document.getElementById('alertMessage').style.display = 'block';
+                        setTimeout(function(){
+                            window.location.href = "/home"; // Chuyển hướng về trang index.html sau 2 giây
+                        }, 2000);
+                    }
                 }
             });
         </script>

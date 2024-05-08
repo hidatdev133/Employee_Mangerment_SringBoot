@@ -7,6 +7,7 @@ import Springweb.repository.thongtinsdRepository;
 import Springweb.repository.xulyRepository;
 import Springweb.service.thietbiService;
 import Springweb.service.thietbiServiceImpl;
+import Springweb.service.thongtinsdServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +38,9 @@ public class HomeController {
 
     @Autowired
     private thongtinsdRepository ttsdReposity;
+    
+    @Autowired
+    private thongtinsdServiceImpl ttsdServiceImpl;
 
     @Autowired
     private xulyRepository xlReposity;
@@ -70,12 +74,14 @@ public class HomeController {
         System.out.println("details");
         Optional<thietbi> thietbiop = tbServiceImpl.findById(id);
         Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
+        Optional<thongtinsd> ttsdop = null;
 
         if (thietbiop.isPresent()) {
             thietbi tb = thietbiop.get();
             if (tb.getMoTaTB() == null || tb.getMoTaTB().trim().isEmpty()) {
                 tb.setMoTaTB("Description not available");
             }
+            ttsdop = ttsdServiceImpl.findById(tb.getMaTB());
             model.addAttribute("thietbiop", tb);
         } else {
             System.out.println("Không có thiết bị này");
@@ -83,6 +89,7 @@ public class HomeController {
         }
 
         for (thongtinsd ttsd : listTtsd) {
+            System.out.println("thoi gian" + ttsd.getTGMuon());
             if (ttsd.getTGMuon() != null && ttsd.getTGTra() == null) {
                 ttsd.setTrangThai("Đang được mượn");
             } else {

@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface thietbiRepository extends CrudRepository<thietbi, Integer> {
 
+    
 }

@@ -54,9 +54,6 @@ public class thanhvienController {
 
     @GetMapping("/register")
     public String registerForm(HttpSession session) {
-        if (session.getAttribute("USERNAME") != null) {
-            return "home";
-        }
         return "register";
     }
     

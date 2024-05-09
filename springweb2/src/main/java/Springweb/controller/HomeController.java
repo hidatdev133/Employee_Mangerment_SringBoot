@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 /*
@@ -44,15 +45,22 @@ public class HomeController {
 
     @Autowired
     private xulyRepository xlReposity;
+    
+    @Autowired
+    private thietbiService thietbiService ;
 
     @GetMapping("/home")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(Model model, @Param("keyword") String keyword) {
         Iterable<thietbi> listThietbi = tbReposity.findAll();
         Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
-
+        if(keyword != null){
+            listThietbi = this.thietbiService.searchTB(keyword);
+            model.addAttribute("listThietbi", listThietbi);
+        }
+       
         for (thietbi tb : listThietbi) {
-            if (tb.getMoTaTB() == null || tb.getMoTaTB().trim().isEmpty()) {
-                tb.setMoTaTB("Description not available");
+            if (tb.getmo_tatb() == null || tb.getmo_tatb().trim().isEmpty()) {
+                tb.setmo_tatb("Description not available");
             }
 
             model.addAttribute("listThietbi", listThietbi);
@@ -78,8 +86,8 @@ public class HomeController {
 
         if (thietbiop.isPresent()) {
             thietbi tb = thietbiop.get();
-            if (tb.getMoTaTB() == null || tb.getMoTaTB().trim().isEmpty()) {
-                tb.setMoTaTB("Description not available");
+            if (tb.getmo_tatb() == null || tb.getmo_tatb().trim().isEmpty()) {
+                tb.setmo_tatb("Description not available");
             }
             ttsdop = ttsdServiceImpl.findById(tb.getMaTB());
             model.addAttribute("thietbiop", tb);

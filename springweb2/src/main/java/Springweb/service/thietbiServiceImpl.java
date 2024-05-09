@@ -48,4 +48,9 @@ public class thietbiServiceImpl implements thietbiService {
         tbRepository.deleteAll();
     }
 
+    @Override
+    public List<thietbi> searchTB(String keyword) {
+        return tbRepository.searchTB(keyword);
+    }
+
 }

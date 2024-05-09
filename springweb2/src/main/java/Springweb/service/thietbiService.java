@@ -20,4 +20,6 @@ public interface thietbiService {
     public void delete(thietbi entity);
 
     public void deleteAll();
+    
+    public List<thietbi> searchTB(String keyword);
 }

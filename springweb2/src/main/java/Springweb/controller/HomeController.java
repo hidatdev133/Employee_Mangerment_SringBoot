@@ -90,7 +90,7 @@ public class HomeController {
         Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
 
         for (thietbi tb : listThietbi) {
-            if (tb.getMoTaTB() == null || tb.getMoTaTB().trim().isEmpty()) {
+            if (tb.getmo_tatb()== null || tb.getmo_tatb().trim().isEmpty()) {
                 tb.setMoTaTB("Description not available");
             }
 
@@ -117,7 +117,7 @@ public class HomeController {
 
         if (thietbiop.isPresent()) {
             thietbi tb = thietbiop.get();
-            if (tb.getMoTaTB() == null || tb.getMoTaTB().trim().isEmpty()) {
+            if (tb.getmo_tatb()== null || tb.getmo_tatb().trim().isEmpty()) {
                 tb.setMoTaTB("Description not available");
             }
             ttsdop = ttsdServiceImpl.findById(tb.getMaTB());

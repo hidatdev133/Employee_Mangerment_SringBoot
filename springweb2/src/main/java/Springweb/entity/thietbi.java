@@ -20,20 +20,16 @@ public class thietbi {
     @Column(name = "TenTB", nullable = false)
     private String TenTB;
 
-    @Column(name = "MoTaTB", nullable = true)
-    private String MoTaTB;
+    @Column(name = "mo_tatb", nullable = true)
+    private String mo_tatb;
 
     public thietbi() {
     }
 
-<<<<<<< Updated upstream
-    public thietbi(Integer MaTB, String TenTB, String MoTaTB) {
-=======
     public thietbi(Integer MaTB, String TenTB, String mo_tatb) {
->>>>>>> Stashed changes
         this.MaTB = MaTB;
         this.TenTB = TenTB;
-        this.MoTaTB = MoTaTB;
+        this.mo_tatb = mo_tatb;
     }
 
     public Integer getMaTB() {
@@ -52,12 +48,12 @@ public class thietbi {
         this.TenTB = TenTB;
     }
 
-    public String getMoTaTB() {
-        return MoTaTB;
+    public String getmo_tatb() {
+        return mo_tatb;
     }
 
-    public void setMoTaTB(String MoTaTB) {
-        this.MoTaTB = MoTaTB;
+    public void setMoTaTB(String mo_tatb) {
+        this.mo_tatb = mo_tatb;
     }
 
 }

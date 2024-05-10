@@ -90,8 +90,8 @@ public class HomeController {
         Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
 
         for (thietbi tb : listThietbi) {
-            if (tb.getmo_tatb() == null || tb.getmo_tatb().trim().isEmpty()) {
-                tb.setmo_tatb("Description not available");
+            if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
+                tb.setMo_tatb("Description not available");
             }
 
             model.addAttribute("listThietbi", listThietbi);
@@ -117,8 +117,8 @@ public class HomeController {
 
         if (thietbiop.isPresent()) {
             thietbi tb = thietbiop.get();
-            if (tb.getmo_tatb() == null || tb.getmo_tatb().trim().isEmpty()) {
-                tb.setmo_tatb("Description not available");
+            if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
+                tb.setMo_tatb("Description not available");
             }
             ttsdop = ttsdServiceImpl.findById(tb.getMaTB());
             model.addAttribute("thietbiop", tb);

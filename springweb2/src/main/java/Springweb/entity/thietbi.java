@@ -48,11 +48,11 @@ public class thietbi {
         this.TenTB = TenTB;
     }
 
-    public String getmo_tatb() {
+    public String getMo_tatb() {
         return mo_tatb;
     }
 
-    public void setmo_tatb(String mo_tatb) {
+    public void setMo_tatb(String mo_tatb) {
         this.mo_tatb = mo_tatb;
     }
 

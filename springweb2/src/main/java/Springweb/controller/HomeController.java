@@ -9,7 +9,10 @@ import Springweb.service.thietbiService;
 import Springweb.service.thietbiServiceImpl;
 import Springweb.service.thongtinsdServiceImpl;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -49,6 +52,42 @@ public class HomeController {
     @Autowired
     private thietbiService thietbiService ;
 
+//    @GetMapping("/home")
+//    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+//        Iterable<thietbi> listThietbi = tbReposity.findAll();
+//        Date date = new Date();
+//        Iterable<thietbi> thietBiList = tbReposity.findAll();
+//        Map<Integer, String[]> trangThaiMap = new HashMap<>();
+//        
+//        if(keyword != null){
+//            listThietbi = this.thietbiService.searchTB(keyword);
+//            model.addAttribute("listThietbi", listThietbi);
+//        }
+//        
+//        for (thietbi thietBi : thietBiList) {
+//            boolean daMuon = false;
+//            boolean daDatCho = false;
+//            for(thongtinsd x: ttsdReposity.findAll()){
+//                if(x.getTGDatcho()!= null){
+//                    daDatCho = true;
+//                }
+//                if (x.getTGMuon()!= null && x.getTGTra() == null){
+//                    daMuon = true;
+//                }
+//            }
+//            // Lưu trạng thái của thiết bị vào Map
+//            String[] trangThai = new String[2];
+//            trangThai[0] = daMuon ? "Đã mượn" : "Chưa mượn";
+//            trangThai[1] = daDatCho ? "Đã đặt chỗ" : "Chưa đặt chỗ";
+//            trangThaiMap.put(thietBi.getMaTB(), trangThai);
+//        }
+//        // Đưa dữ liệu vào model
+//        model.addAttribute("dataThietBi", thietBiList);
+//        model.addAttribute("trangThaiMap", trangThaiMap);
+//        return "home";
+//    }
+    
+    
     @GetMapping("/home")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
         Iterable<thietbi> listThietbi = tbReposity.findAll();

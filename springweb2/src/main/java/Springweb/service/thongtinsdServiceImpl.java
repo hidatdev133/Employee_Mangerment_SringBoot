@@ -51,5 +51,10 @@ public class thongtinsdServiceImpl implements thongtinsdService {
     public void deleteAll() {
         ttsdRepository.deleteAll();
     }
+    
+    @Override
+    public List<thongtinsd> searchTTSD(String keyword){
+        return ttsdRepository.searchTTSD(keyword);
+    }
 
 }

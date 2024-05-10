@@ -20,4 +20,6 @@ public interface thongtinsdService {
     public void delete(thongtinsd entity);
 
     public void deleteAll();
+    
+    public List<thongtinsd> searchTTSD(String keyword);
 }

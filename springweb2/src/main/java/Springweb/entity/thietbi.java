@@ -26,10 +26,10 @@ public class thietbi {
     public thietbi() {
     }
 
-    public thietbi(Integer MaTB, String TenTB, String mo_tatb) {
+    public thietbi(Integer MaTB, String TenTB, String MO) {
         this.MaTB = MaTB;
         this.TenTB = TenTB;
-        this.mo_tatb = mo_tatb;
+        this.mo_tatb = MO;
     }
 
     public Integer getMaTB() {

@@ -91,7 +91,7 @@ public class HomeController {
 
         for (thietbi tb : listThietbi) {
             if (tb.getmo_tatb()== null || tb.getmo_tatb().trim().isEmpty()) {
-                tb.setMoTaTB("Description not available");
+                tb.setmo_tatb("Description not available");
             }
 
             model.addAttribute("listThietbi", listThietbi);
@@ -118,7 +118,7 @@ public class HomeController {
         if (thietbiop.isPresent()) {
             thietbi tb = thietbiop.get();
             if (tb.getmo_tatb()== null || tb.getmo_tatb().trim().isEmpty()) {
-                tb.setMoTaTB("Description not available");
+                tb.setmo_tatb("Description not available");
             }
             ttsdop = ttsdServiceImpl.findById(tb.getMaTB());
             model.addAttribute("thietbiop", tb);

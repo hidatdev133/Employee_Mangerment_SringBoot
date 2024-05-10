@@ -52,7 +52,7 @@ public class thietbi {
         return mo_tatb;
     }
 
-    public void setMoTaTB(String mo_tatb) {
+    public void setmo_tatb(String mo_tatb) {
         this.mo_tatb = mo_tatb;
     }
 

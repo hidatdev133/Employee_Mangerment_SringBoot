@@ -26,7 +26,11 @@ public class thietbi {
     public thietbi() {
     }
 
+<<<<<<< Updated upstream
     public thietbi(Integer MaTB, String TenTB, String MoTaTB) {
+=======
+    public thietbi(Integer MaTB, String TenTB, String mo_tatb) {
+>>>>>>> Stashed changes
         this.MaTB = MaTB;
         this.TenTB = TenTB;
         this.MoTaTB = MoTaTB;

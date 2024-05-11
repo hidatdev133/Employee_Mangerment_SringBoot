@@ -9,7 +9,10 @@ import Springweb.service.thietbiService;
 import Springweb.service.thietbiServiceImpl;
 import Springweb.service.thongtinsdService;
 import Springweb.service.thongtinsdServiceImpl;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -85,8 +88,8 @@ public class HomeController {
 //            trangThai[1] = daDatCho ? "Đã đặt chỗ" : "Chưa đặt chỗ";
 //            trangThaiMap.put(thietBi.getMaTB(), trangThai);
 //        }
-        // Đưa dữ liệu vào model
-//        model.addAttribute("dataThietBi", thietBiList);
+////         Đưa dữ liệu vào model
+        model.addAttribute("dataThietBi", thietBiList);
 //        model.addAttribute("trangThaiMap", trangThaiMap);
 
         return "home";
@@ -122,30 +125,50 @@ public class HomeController {
 //        return "home";
 //    }
     
+//    @GetMapping("/detail")
+//    public String viewDetail(@RequestParam("id") int id, Model model) {
+//        System.out.println("details");
+//        Optional<thietbi> thietbiop = tbServiceImpl.findById(id);
+//        Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
+////        Iterable<thietbi> listThietbi = ttsdReposity.findAll();
+//
+//        if(id != 0){
+//            listTtsd = this.ttsdService.searchTTSD(id);
+//            
+//            model.addAttribute("listThongtinsd", listTtsd);
+//        }
+//        if (thietbiop.isPresent()) {
+//            thietbi tb = thietbiop.get();
+//            if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
+//                tb.setMo_tatb("Description not available");
+//            }
+//            model.addAttribute("thietbiop", tb);
+//        } else {
+//            System.out.println("Không có thiết bị này");
+//            // Handle the case where the device ID is not found
+//        }
+//
+//        return "detail";
+//    }
+    
     @GetMapping("/detail")
     public String viewDetail(@RequestParam("id") int id, Model model) {
         System.out.println("details");
         Optional<thietbi> thietbiop = tbServiceImpl.findById(id);
-        Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
-//        Iterable<thietbi> listThietbi = ttsdReposity.findAll();
+        Iterable<thongtinsd> listTtsd = null; // Khởi tạo listTtsd là null
 
-        if(id != 0){
-            listTtsd = this.ttsdService.searchTTSD(id);
-            
+        if (id != 0) {
+            LocalDateTime startTime = LocalDateTime.now();
+            Timestamp timestamp = Timestamp.valueOf(startTime);
+            listTtsd = ttsdService.findByMaTB(id, timestamp);
+            if (listTtsd != null && !((Collection<?>) listTtsd).isEmpty()) {
+                for (thongtinsd ttsd : listTtsd) {
+                    ttsd.setTrangThai("Không có sẵn");
+                }
+            }
             model.addAttribute("listThongtinsd", listTtsd);
         }
-        
-//        for (thongtinsd ttsd : listTtsd) {
-//            System.out.println("thoi gian" + ttsd.getTGMuon());
-//            if (ttsd.getTGMuon() != null && ttsd.getTGTra() == null) {
-//                ttsd.setTrangThai("Đang được mượn");
-//            } else {
-//                ttsd.setTrangThai("Có sẵn");
-//            }
-//            model.addAttribute("listThongtinsd", listTtsd);
-//        }
-        
-        
+
         if (thietbiop.isPresent()) {
             thietbi tb = thietbiop.get();
             if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
@@ -159,5 +182,4 @@ public class HomeController {
 
         return "detail";
     }
-
 }

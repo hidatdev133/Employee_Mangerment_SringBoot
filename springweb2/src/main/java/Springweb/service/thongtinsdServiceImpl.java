@@ -2,6 +2,8 @@ package Springweb.service;
 
 import Springweb.entity.thongtinsd;
 import Springweb.repository.thongtinsdRepository;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +54,13 @@ public class thongtinsdServiceImpl implements thongtinsdService {
         ttsdRepository.deleteAll();
     }
     
-    @Override
-    public List<thongtinsd> searchTTSD(int keyword){
-        return ttsdRepository.searchTTSD(keyword);
+//    @Override
+//    public List<thongtinsd> searchTTSD(int keyword){
+//        return ttsdRepository.searchTTSD(keyword);
+//    }
+    
+    public List<thongtinsd> findByMaTB(int maTB, Timestamp startTime){
+        return ttsdRepository.findByMaTB(maTB, startTime);
     }
 
 }

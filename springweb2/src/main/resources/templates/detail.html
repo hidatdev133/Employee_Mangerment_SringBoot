@@ -64,13 +64,13 @@
             <h1 class="text-center">DETAIL</h1>
             <div class="row" style="margin-top: 30px;">
                 <div class="col-md-3 py-3 py-md-0" th:each="item, iterStat : ${thietbiop}" >
-                    <div style=" justify-content: center; margin-left: 100%" th:if="${iterStat.index} &lt; ${listThongtinsd.size()}">
+                    <div style=" justify-content: center; margin-left: 100%">
                         <img src="./images/p6.png" alt="">
                     </div>
                 </div>
 
                 <div class="py-3 py-md-0" th:each="item, iterStat : ${thietbiop}">
-                    <div class="" th:if="${iterStat.index} &lt; ${listThongtinsd.size()}">
+                    <div class="">
                         <div class="">
                             
                             
@@ -88,8 +88,20 @@
                                 </div>
                             </div>
                             <!-- Pikaday calendar -->
+<!--                            <div style="display: flex; margin-top: 20px">
+                                <h2>Trạng thái: <span style="padding-left: 5px; border: 1px solid black; background: black; color: white;"></span></h2>
+                            </div>-->
+
                             <div style="display: flex; margin-top: 20px">
-                                <h2>Trạng thái: <span th:text="${listThongtinsd[iterStat.index].trangThai}" style="padding-left: 5px; border: 1px solid black; background: black; color: white;"></span></h2>
+                                <h2>Trạng thái: 
+                                    <span th:if="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}" 
+                                          th:text="${listThongtinsd[iterStat.index].trangThai}" 
+                                          style="padding-left: 5px; border: 1px solid black; background: black; color: white;">
+                                    </span>
+                                    <span th:unless="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}">
+                                        Có sẵn
+                                    </span>
+                                </h2>
                             </div>
                             <div class="btn"><button id="book-now-btn"> Book now</button></div>
                                 

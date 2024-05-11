@@ -52,18 +52,18 @@ public class HomeController {
     @Autowired
     private xulyRepository xlReposity;
 
-//    @GetMapping("/home")
-//    public String viewHomePage(Model model, @Param("keyword") String keyword) {
-//        Iterable<thietbi> listThietbi = tbReposity.findAll();
-//        Date date = new Date();
-//        Iterable<thietbi> thietBiList = tbReposity.findAll();
-//        Map<Integer, String[]> trangThaiMap = new HashMap<>();
-//        
-//        if(keyword != null){
-//            listThietbi = this.thietbiService.searchTB(keyword);
-//            model.addAttribute("listThietbi", listThietbi);
-//        }
-//        
+    @GetMapping("/home")
+    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+        Iterable<thietbi> listThietbi = tbReposity.findAll();
+        Date date = new Date();
+        Iterable<thietbi> thietBiList = tbReposity.findAll();
+        Map<Integer, String[]> trangThaiMap = new HashMap<>();
+        
+        if(keyword != null){
+            listThietbi = this.thietbiService.searchTB(keyword);
+            model.addAttribute("dataThietBi", listThietbi);
+        }
+        
 //        for (thietbi thietBi : thietBiList) {
 //            boolean daMuon = false;
 //            boolean daDatCho = false;
@@ -81,9 +81,10 @@ public class HomeController {
 //            trangThai[1] = daDatCho ? "Đã đặt chỗ" : "Chưa đặt chỗ";
 //            trangThaiMap.put(thietBi.getMaTB(), trangThai);
 //        }
-//        // Đưa dữ liệu vào model
+        // Đưa dữ liệu vào model
 //        model.addAttribute("dataThietBi", thietBiList);
 //        model.addAttribute("trangThaiMap", trangThaiMap);
+<<<<<<< Updated upstream
 //        return "home";
 //    }
     
@@ -109,8 +110,39 @@ public class HomeController {
             }
             model.addAttribute("listThongtinsd", listTtsd);
         }
+=======
+>>>>>>> Stashed changes
         return "home";
     }
+    
+    
+//    @GetMapping("/home")
+//    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+//        Iterable<thietbi> listThietbi = tbReposity.findAll();
+//        Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
+//        if(keyword != null){
+//            listThietbi = this.thietbiService.searchTB(keyword);
+//            model.addAttribute("listThietbi", listThietbi);
+//        }
+//       
+//        for (thietbi tb : listThietbi) {
+//            if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
+//                tb.setMo_tatb("Description not available");
+//            }
+//
+//            model.addAttribute("listThietbi", listThietbi);
+//        }
+//
+//        for (thongtinsd ttsd : listTtsd) {
+//            if (ttsd.getTGMuon() != null && ttsd.getTGTra() == null) {
+//                ttsd.setTrangThai("Đang được mượn");
+//            } else {
+//                ttsd.setTrangThai("Có sẵn");
+//            }
+//            model.addAttribute("listThongtinsd", listTtsd);
+//        }
+//        return "home";
+//    }
     
     @GetMapping("/detail")
     public String viewDetail(@RequestParam("id") int id, Model model) {

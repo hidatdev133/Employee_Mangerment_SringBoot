@@ -69,7 +69,7 @@
 
 
         <!-- home content -->
-        <section class="home">
+<!--        <section class="home">
             <div class="content">
                 <h1> <span>Electronic Products</span></h1>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, saepe.
@@ -80,36 +80,36 @@
             <div class="img">
                 <img src="./images/background.png" alt="">
             </div>
-        </section>
+        </section>-->
         <!-- home content -->
 
 
         <!-- product cards -->
         <div class="container" id="product-cards">
             <h1 class="text-center">PRODUCTS</h1>
-            <div class="row" style="margin-top: 30px;">
-                 <!--Vòng lặp để hiển thị từng sản phẩm--> 
+<!--            <div class="row" style="margin-top: 30px;">
+                 Vòng lặp để hiển thị từng sản phẩm 
                 <div class="col-md-3 py-3 py-md-0" th:each="item, iterStat : ${listThietbi}">
-                     <!--Kiểm tra xem có phần tử tương ứng trong danh sách thongtinsd hay không--> 
+                     Kiểm tra xem có phần tử tương ứng trong danh sách thongtinsd hay không 
                     <div class="card" >
-                         <!--Lấy thông tin sản phẩm từ danh sách thietbi--> 
+                         Lấy thông tin sản phẩm từ danh sách thietbi 
                         <img src="./images/p6.png" alt="">
                         <div class="card-body">
                             <h3 class="text-center" th:text="${item.MaTB}"></h3>
                             <h3 class="text-center" th:text="${item.TenTB}"></h3>
-                             <!--Lấy thông tin trạng thái từ danh sách thongtinsd--> 
+                             Lấy thông tin trạng thái từ danh sách thongtinsd 
                             <div style="display: flex; align-items: center;">
                                 <h2>Trạng thái: <span style="padding-left: 5px; border: 1px solid black; background: black; color: white">Có sẵn</span></h2>
                                 <h2 style="margin-left: 10px; padding-left: 40px"><span><li class="fa-solid fa-cart-shopping"></li></span></h2>
                             </div>
                         </div>
-                         <!--Sử dụng th:attr để đưa MaTB vào thuộc tính data-id của nút "Book now"--> 
+                         Sử dụng th:attr để đưa MaTB vào thuộc tính data-id của nút "Book now" 
                         <div class="btn"><button class="book-now-btn" th:attr="data-id=${item.MaTB}"> Book now</button></div>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
-<!--            <div>
+            <div>
                 <table class="table">
                     <thread>
                         <tr>
@@ -130,7 +130,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>-->
+            </div>
         </div>
 
         <!-- product cards -->

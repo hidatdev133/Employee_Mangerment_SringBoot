@@ -88,40 +88,10 @@ public class HomeController {
         // Đưa dữ liệu vào model
 //        model.addAttribute("dataThietBi", thietBiList);
 //        model.addAttribute("trangThaiMap", trangThaiMap);
-<<<<<<< Updated upstream
-//        return "home";
-//    }
-    
-    
-    @GetMapping("/home")
-    public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        Iterable<thietbi> listThietbi = tbReposity.findAll();
-        Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
-        if(keyword != null){
-            listThietbi = this.thietbiService.searchTB(keyword);
-            model.addAttribute("listThietbi", listThietbi);
-        }
-       
-        for (thietbi tb : listThietbi) {
-            if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
-                tb.setMo_tatb("Description not available");
-            }
 
-            model.addAttribute("listThietbi", listThietbi);
-        }
-
-        for (thongtinsd ttsd : listTtsd) {
-            if (ttsd.getTGMuon() != null && ttsd.getTGTra() == null) {
-                ttsd.setTrangThai("Đang được mượn");
-            } else {
-                ttsd.setTrangThai("Có sẵn");
-            }
-            model.addAttribute("listThongtinsd", listTtsd);
-        }
-=======
->>>>>>> Stashed changes
         return "home";
     }
+    
     
     
 //    @GetMapping("/home")
@@ -187,15 +157,6 @@ public class HomeController {
             // Handle the case where the device ID is not found
         }
 
-//        for (thongtinsd ttsd : listTtsd) {
-//            System.out.println("thoi gian" + ttsd.getTGMuon());
-//            if (ttsd.getTGMuon() != null && ttsd.getTGTra() == null) {
-//                ttsd.setTrangThai("Đang được mượn");
-//            } else {
-//                ttsd.setTrangThai("Có sẵn");
-//            }
-//            model.addAttribute("listThongtinsd", listTtsd);
-//        }
         return "detail";
     }
 

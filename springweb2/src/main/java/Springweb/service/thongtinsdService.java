@@ -21,5 +21,5 @@ public interface thongtinsdService {
 
     public void deleteAll();
     
-    public List<thongtinsd> searchTTSD(String keyword);
+    public List<thongtinsd> searchTTSD(int keyword);
 }

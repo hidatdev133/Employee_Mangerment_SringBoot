@@ -53,7 +53,7 @@ public class thongtinsdServiceImpl implements thongtinsdService {
     }
     
     @Override
-    public List<thongtinsd> searchTTSD(String keyword){
+    public List<thongtinsd> searchTTSD(int keyword){
         return ttsdRepository.searchTTSD(keyword);
     }
 

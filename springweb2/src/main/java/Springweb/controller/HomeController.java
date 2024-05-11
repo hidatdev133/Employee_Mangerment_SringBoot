@@ -7,6 +7,7 @@ import Springweb.repository.thongtinsdRepository;
 import Springweb.repository.xulyRepository;
 import Springweb.service.thietbiService;
 import Springweb.service.thietbiServiceImpl;
+import Springweb.service.thongtinsdService;
 import Springweb.service.thongtinsdServiceImpl;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,6 +46,9 @@ public class HomeController {
     
     @Autowired
     private thongtinsdServiceImpl ttsdServiceImpl;
+    
+    @Autowired
+    private thongtinsdService ttsdService;
 
     @Autowired
     private xulyRepository xlReposity;
@@ -121,29 +125,45 @@ public class HomeController {
         System.out.println("details");
         Optional<thietbi> thietbiop = tbServiceImpl.findById(id);
         Iterable<thongtinsd> listTtsd = ttsdReposity.findAll();
-        Optional<thongtinsd> ttsdop = null;
+//        Iterable<thietbi> listThietbi = ttsdReposity.findAll();
 
+        if(id != 0){
+            listTtsd = this.ttsdService.searchTTSD(id);
+            
+            model.addAttribute("listThongtinsd", listTtsd);
+        }
+        
+//        for (thongtinsd ttsd : listTtsd) {
+//            System.out.println("thoi gian" + ttsd.getTGMuon());
+//            if (ttsd.getTGMuon() != null && ttsd.getTGTra() == null) {
+//                ttsd.setTrangThai("Đang được mượn");
+//            } else {
+//                ttsd.setTrangThai("Có sẵn");
+//            }
+//            model.addAttribute("listThongtinsd", listTtsd);
+//        }
+        
+        
         if (thietbiop.isPresent()) {
             thietbi tb = thietbiop.get();
             if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
                 tb.setMo_tatb("Description not available");
             }
-            ttsdop = ttsdServiceImpl.findById(tb.getMaTB());
             model.addAttribute("thietbiop", tb);
         } else {
             System.out.println("Không có thiết bị này");
             // Handle the case where the device ID is not found
         }
 
-        for (thongtinsd ttsd : listTtsd) {
-            System.out.println("thoi gian" + ttsd.getTGMuon());
-            if (ttsd.getTGMuon() != null && ttsd.getTGTra() == null) {
-                ttsd.setTrangThai("Đang được mượn");
-            } else {
-                ttsd.setTrangThai("Có sẵn");
-            }
-            model.addAttribute("listThongtinsd", listTtsd);
-        }
+//        for (thongtinsd ttsd : listTtsd) {
+//            System.out.println("thoi gian" + ttsd.getTGMuon());
+//            if (ttsd.getTGMuon() != null && ttsd.getTGTra() == null) {
+//                ttsd.setTrangThai("Đang được mượn");
+//            } else {
+//                ttsd.setTrangThai("Có sẵn");
+//            }
+//            model.addAttribute("listThongtinsd", listTtsd);
+//        }
         return "detail";
     }
 

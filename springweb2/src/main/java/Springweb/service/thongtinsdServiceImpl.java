@@ -59,8 +59,8 @@ public class thongtinsdServiceImpl implements thongtinsdService {
 //        return ttsdRepository.searchTTSD(keyword);
 //    }
     
-    public List<thongtinsd> findByMaTB(int maTB, Timestamp startTime){
-        return ttsdRepository.findByMaTB(maTB, startTime);
+    public List<thongtinsd> findByMaTB(int maTB){
+        return ttsdRepository.findByMaTB(maTB);
     }
 
 }

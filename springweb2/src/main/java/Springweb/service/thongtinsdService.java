@@ -25,5 +25,5 @@ public interface thongtinsdService {
     
 //    public List<thongtinsd> searchTTSD(int keyword);
     
-    public List<thongtinsd> findByMaTB(int maTB, Timestamp startTime);
+    public List<thongtinsd> findByMaTB(int maTB);
 }

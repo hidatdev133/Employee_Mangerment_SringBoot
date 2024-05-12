@@ -89,7 +89,7 @@ public class HomeController {
 //            trangThaiMap.put(thietBi.getMaTB(), trangThai);
 //        }
 ////         Đưa dữ liệu vào model
-//        model.addAttribute("dataThietBi", thietBiList);
+        model.addAttribute("dataThietBi", listThietbi);
 //        model.addAttribute("trangThaiMap", trangThaiMap);
 
         return "home";

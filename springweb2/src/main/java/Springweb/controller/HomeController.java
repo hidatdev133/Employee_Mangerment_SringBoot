@@ -89,7 +89,7 @@ public class HomeController {
 //            trangThaiMap.put(thietBi.getMaTB(), trangThai);
 //        }
 ////         Đưa dữ liệu vào model
-        model.addAttribute("dataThietBi", thietBiList);
+        model.addAttribute("dataThietBi", listThietbi);
 //        model.addAttribute("trangThaiMap", trangThaiMap);
 
         return "home";
@@ -159,8 +159,8 @@ public class HomeController {
 
         if (id != 0) {
             LocalDateTime startTime = LocalDateTime.now();
-            Timestamp timestamp = Timestamp.valueOf(startTime);
-            listTtsd = ttsdService.findByMaTB(id, timestamp);
+//            Timestamp timestamp = Timestamp.valueOf(startTime);
+            listTtsd = ttsdService.findByMaTB(id);
             if (listTtsd != null && !((Collection<?>) listTtsd).isEmpty()) {
                 for (thongtinsd ttsd : listTtsd) {
                     ttsd.setTrangThai("Không có sẵn");

@@ -18,9 +18,9 @@ public interface thongtinsdRepository extends CrudRepository<thongtinsd, Integer
 //    @Query("SELECT s FROM thongtinsd s JOIN thietbi t ON s.MaTB = t.MaTB WHERE s.MaTB = :maTB")
 //    List<thongtinsd> searchTTSD(int maTB);
     
-//    @Query("SELECT s FROM thongtinsd s WHERE s.MaTB = :maTB")
-//    List<thongtinsd> findByMaTB(int maTB);
+    @Query("SELECT s FROM thongtinsd s WHERE s.MaTB = :maTB")
+    List<thongtinsd> findByMaTB(int maTB);
     
-    @Query("SELECT s FROM thongtinsd s WHERE s.MaTB = :maTB AND s.TGMuon >= :startTime")
-    List<thongtinsd> findByMaTB(int maTB, Timestamp startTime);
+//    @Query("SELECT s FROM thongtinsd s WHERE s.MaTB = :maTB AND s.TGMuon >= :startTime")
+//    List<thongtinsd> findByMaTB(int maTB, Timestamp startTime);
 }

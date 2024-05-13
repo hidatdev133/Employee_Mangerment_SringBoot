@@ -20,14 +20,29 @@
         <!-- fonts links -->
     </head>
     <body>
-
         <!-- top navbar -->
         <div class="top-navbar">
-            <p>WELCOME TO OUR ELECTRONIC PRODUCTS jfs79</p>
+
+            <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
             <div class="icons">
                 <a href="/inform" class="fa fa-user"></a>
                 <a href="/login"><img src="./images/register.png" alt="" width="18px">Login</a>
+
+            <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
+            <div th:if="${session.matv}">
+               <div class="icons">
+                 <span th:text="${session.hovaten}"></span>
+                 <a href="/logout"><img src="./images/register.png" alt="" width="18px">Logout</a>
+               </div>
+                 
             </div>
+            <div th:unless="${session.matv}">
+                <div class="icons">
+                    <a href="/login"><img src="./images/register.png" alt="" width="18px">Login</a>
+                </div>
+
+            </div>
+            
         </div>
         <!-- top navbar -->
 
@@ -244,15 +259,21 @@
         
         
         <script th:inline="javascript">
-            /* Xử lý sự kiện khi nhấp vào nút "Book now" */
-            document.addEventListener('DOMContentLoaded', function() {
+           document.addEventListener('DOMContentLoaded', function() {
+                const isLoggedIn = /*[[${session.matv}]]*/ false; // Thay đổi giá trị này tương ứng với trạng thái đăng nhập
                 const bookNowButtons = document.querySelectorAll('.book-now-btn');
+
                 bookNowButtons.forEach(function(button) {
                     button.addEventListener('click', function() {
-                        /* Lấy giá trị MaTB từ thuộc tính data-id */
-                        var productId = button.getAttribute('data-id');
-                        /* Chuyển hướng đến trang chi tiết sản phẩm và truyền tham số MaTB */
-                        window.location.href = '/detail?id=' + productId;
+                        if (!isLoggedIn) {
+                            // Hiển thị thông báo nếu chưa đăng nhập
+                            alert('Bạn phải đăng nhập để đặt hàng. Vui lòng đăng nhập trước.');
+                        } else {
+                            /* Lấy giá trị MaTB từ thuộc tính data-id */
+                            var productId = button.getAttribute('data-id');
+                            /* Chuyển hướng đến trang chi tiết sản phẩm và truyền tham số MaTB */
+                            window.location.href = '/detail?id=' + productId;
+                        }
                     });
                 });
             });

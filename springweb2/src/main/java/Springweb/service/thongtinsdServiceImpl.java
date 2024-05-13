@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -62,5 +63,6 @@ public class thongtinsdServiceImpl implements thongtinsdService {
     public List<thongtinsd> findByMaTB(int maTB){
         return ttsdRepository.findByMaTB(maTB);
     }
+    
 
 }

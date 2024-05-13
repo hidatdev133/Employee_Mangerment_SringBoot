@@ -76,7 +76,7 @@ public class thanhvienServicelmpl implements thanhvienService{
     public thanhvien getthanhvien(int matv){
         thanhvien tv=membersRepository.getthanhvien(matv);
         return tv;
-
+    }
 
     @Override
     public thanhvien getMember(int matv, String password) {

@@ -23,8 +23,9 @@
 
         <!-- top navbar -->
         <div class="top-navbar">
-            <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
+            <p>WELCOME TO OUR ELECTRONIC PRODUCTS jfs79</p>
             <div class="icons">
+                <a href="/inform" class="fa fa-user"></a>
                 <a href="/login"><img src="./images/register.png" alt="" width="18px">Login</a>
             </div>
         </div>
@@ -119,7 +120,7 @@
                         </tr>
                     </thread>
                     <tbody>
-                        <tr th:each="row : ${dataThietBi}">
+                       <tr th:each="row : ${dataThietBi}">
                             <td th:text="${row.maTB}"></td>
                             <td th:text="${row.tenTB}"></td>
                             <td th:text="${row.mo_tatb}"></td>

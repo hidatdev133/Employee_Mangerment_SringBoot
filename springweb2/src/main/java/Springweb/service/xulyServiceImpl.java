@@ -2,6 +2,7 @@ package Springweb.service;
 
 import Springweb.entity.xuly;
 import Springweb.repository.xulyRepository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,4 +51,18 @@ public class xulyServiceImpl implements xulyService {
     public void deleteAll() {
         xulyRepository.deleteAll();
     }
+     @Override 
+    public int getTongViPham(int matv){
+       return xulyRepository.getTongViPham(matv);
+    }
+    @Override 
+    public int getDangXuLy(int matv){
+        return xulyRepository.getDangXuLy(matv);
+    }
+    @Override
+    public List Listxl(int matv){
+        return xulyRepository.Listxl(matv);
+    }
+    
+    
 }

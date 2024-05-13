@@ -1,7 +1,12 @@
 package springweb.controller;
 
+import Springweb.entity.thongtinsd;
+import Springweb.entity.xuly;
+import Springweb.repository.thongtinsdRepository;
+import Springweb.repository.xulyRepository;
 import Springweb.util.ForgotPassWordEmail;
 import Springweb.util.UpdatePassWordEmail;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +34,11 @@ public class thanhvienController {
     @Autowired
     private UpdatePassWordEmail sendemail2;
     
+    @Autowired 
+    private xulyRepository xlRepository;
+    @Autowired
+    private thongtinsdRepository ttsdRepository;
+    
 
     @GetMapping("/login")
     public String loginForm(HttpSession session) {
@@ -37,7 +47,35 @@ public class thanhvienController {
         }
         return "login";
     }
-    
+    @GetMapping ("/inform")
+    public String inform(Model model,HttpSession session){
+        if(session.getAttribute("matv")!=null){
+            int matv = (int) session.getAttribute("matv");
+    thanhvien tv=memberService.getthanhvien(matv);
+    model.addAttribute("thanhvien",tv);
+            
+             return "/inform";
+        }
+      else return "/home";
+    }
+    @GetMapping ("/profile")
+    public String profile(Model model, HttpSession session){
+        int matv=(int)session.getAttribute("matv");
+        thanhvien tv=memberService.getthanhvien(matv);
+        String username=memberService.getusername(matv);
+        int tongvp=xlRepository.getTongViPham(matv);
+        int dangvp=xlRepository.getDangXuLy(matv);
+        List<thongtinsd>ttList=ttsdRepository.getListsd();
+        List<xuly> listxl=xlRepository.Listxl(matv);
+         model.addAttribute("username", username);
+        model.addAttribute("thanhvien",tv);
+        model.addAttribute("tongvipham", tongvp);
+        model.addAttribute("dangvipham",dangvp);
+        model.addAttribute("listdangdat",ttList);
+        model.addAttribute("listxl",listxl);
+        
+                return "/profile";
+    }
     @PostMapping("/member/checklogin")
     public String checklogin(Model model, @RequestParam("matv") int matv, 
 @RequestParam("password") String password, HttpSession session) {

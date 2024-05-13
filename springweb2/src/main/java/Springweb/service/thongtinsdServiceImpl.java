@@ -64,5 +64,10 @@ public class thongtinsdServiceImpl implements thongtinsdService {
         return ttsdRepository.findByMaTB(maTB);
     }
     
+    @Override
+    public List<thongtinsd>getListsd(){
+        return ttsdRepository.getListsd();
+    }
+    
 
 }

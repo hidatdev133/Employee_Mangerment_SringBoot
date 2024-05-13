@@ -65,4 +65,15 @@ public class thanhvienServicelmpl implements thanhvienService{
         String email = membersRepository.findEmailbyMaTV(matv);
         return email;
     }
+    
+      @Override
+    public String getusername(int matv){
+        String username=membersRepository.getusername(matv);
+        return username;
+    }
+    @Override 
+    public thanhvien getthanhvien(int matv){
+        thanhvien tv=membersRepository.getthanhvien(matv);
+        return tv;
+    }
 }

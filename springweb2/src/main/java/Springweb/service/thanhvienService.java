@@ -16,6 +16,8 @@ public interface thanhvienService {
     
    boolean checkLogin(int matv, String password);
    
+   thanhvien getMember(int matv, String password);
+   
    boolean checkRegister(thanhvien tv);
    
    boolean checkEmail(int matv, String email);

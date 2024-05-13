@@ -32,10 +32,16 @@ public class thanhvienController {
 
     @GetMapping("/login")
     public String loginForm(HttpSession session) {
-        if (session.getAttribute("USERNAME") != null) {
+        if (session.getAttribute("matv") != null) {
             return "home";
         }
         return "login";
+    }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("matv");
+        return "redirect:/home";
     }
     
     @PostMapping("/member/checklogin")
@@ -47,6 +53,8 @@ public class thanhvienController {
              return "login";
          }else{
          session.setAttribute("matv", matv);
+         thanhvien tv = memberService.getMember(matv, password);
+         session.setAttribute("hovaten", tv.getHo_ten());
          return "redirect:/home";
          }
      }

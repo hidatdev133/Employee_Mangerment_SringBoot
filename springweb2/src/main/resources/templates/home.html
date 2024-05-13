@@ -24,9 +24,19 @@
         <!-- top navbar -->
         <div class="top-navbar">
             <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
-            <div class="icons">
-                <a href="/login"><img src="./images/register.png" alt="" width="18px">Login</a>
+            <div th:if="${session.matv}">
+               <div class="icons">
+                 <span th:text="${session.hovaten}"></span>
+                 <a href="/logout"><img src="./images/register.png" alt="" width="18px">Logout</a>
+               </div>
+                 
             </div>
+            <div th:unless="${session.matv}">
+                <div class="icons">
+                    <a href="/login"><img src="./images/register.png" alt="" width="18px">Login</a>
+                </div>
+            </div>
+            
         </div>
         <!-- top navbar -->
 

@@ -22,6 +22,12 @@
     <body>
         <!-- top navbar -->
         <div class="top-navbar">
+
+            <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
+            <div class="icons">
+                <a href="/inform" class="fa fa-user"></a>
+                <a href="/login"><img src="./images/register.png" alt="" width="18px">Login</a>
+
             <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
             <div th:if="${session.matv}">
                <div class="icons">
@@ -34,6 +40,7 @@
                 <div class="icons">
                     <a href="/login"><img src="./images/register.png" alt="" width="18px">Login</a>
                 </div>
+
             </div>
             
         </div>
@@ -128,7 +135,7 @@
                         </tr>
                     </thread>
                     <tbody>
-                        <tr th:each="row : ${dataThietBi}">
+                       <tr th:each="row : ${dataThietBi}">
                             <td th:text="${row.maTB}"></td>
                             <td th:text="${row.tenTB}"></td>
                             <td th:text="${row.mo_tatb}"></td>

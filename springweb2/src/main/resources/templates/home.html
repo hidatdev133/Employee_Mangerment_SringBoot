@@ -23,14 +23,11 @@
         <!-- top navbar -->
         <div class="top-navbar">
 
-            <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
-            <div class="icons">
-                <a href="/inform" class="fa fa-user"></a>
-                <a href="/login"><img src="./images/register.png" alt="" width="18px">Login</a>
 
             <p>WELCOME TO OUR ELECTRONIC PRODUCTS</p>
             <div th:if="${session.matv}">
                <div class="icons">
+                   <a href="/inform" class="fa fa-user"></a>
                  <span th:text="${session.hovaten}"></span>
                  <a href="/logout"><img src="./images/register.png" alt="" width="18px">Logout</a>
                </div>

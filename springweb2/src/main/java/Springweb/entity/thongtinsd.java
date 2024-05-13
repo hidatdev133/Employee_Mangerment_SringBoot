@@ -1,6 +1,7 @@
 package Springweb.entity;
 
 import com.sun.istack.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,16 +39,15 @@ public class thongtinsd {
     @Column(name = "TGTra", nullable = true)
     private Date TGTra;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "TGDatcho", nullable = true)
-    private Date TGDatcho;
+    private LocalDateTime TGDatcho;
 
     private String trangThai;
 
     public thongtinsd() {
     }
 
-    public thongtinsd(Integer MaTT, Integer MaTV, Integer MaTB, Date TGVao, Date TGMuon, Date TGTra, Date TGDatcho) {
+    public thongtinsd(Integer MaTT, Integer MaTV, Integer MaTB, Date TGVao, Date TGMuon, Date TGTra, LocalDateTime  TGDatcho) {
         this.MaTT = MaTT;
         this.MaTV = MaTV;
         this.MaTB = MaTB;
@@ -57,11 +57,11 @@ public class thongtinsd {
         this.TGDatcho = TGDatcho;
     }
 
-    public Date getTGDatcho() {
+    public LocalDateTime  getTGDatcho() {
         return TGDatcho;
     }
 
-    public void setTGDatcho(Date TGDatcho) {
+    public void setTGDatcho(LocalDateTime  TGDatcho) {
         this.TGDatcho = TGDatcho;
     }
 

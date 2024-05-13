@@ -11,6 +11,7 @@ import Springweb.service.thongtinsdService;
 import Springweb.service.thongtinsdServiceImpl;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -29,7 +30,9 @@ import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import springweb.repository.thanhvienRepository;
 
 @Controller
@@ -154,7 +157,7 @@ public class HomeController {
     @GetMapping("/detail")
     public String viewDetail(@RequestParam("id") int id, Model model) {
         System.out.println("details");
-        Optional<thietbi> thietbiop = tbServiceImpl.findById(id);
+        Optional<thietbi> thietbiop = tbReposity.findById(id);
         Iterable<thongtinsd> listTtsd = null; // Khởi tạo listTtsd là null
 
         if (id != 0) {
@@ -182,4 +185,5 @@ public class HomeController {
 
         return "detail";
     }
+    
 }

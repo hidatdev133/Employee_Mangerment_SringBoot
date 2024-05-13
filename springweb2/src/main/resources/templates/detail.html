@@ -84,7 +84,9 @@
                                     <div class="">
                                         <h3 class="">Chọn ngày và giờ đặt chỗ</h3>
                                         <input style="margin-left: 50px" type="datetime-local" id="bookingDateTime" name="bookingDateTime">
+                                        <div class="btn" id="maTB" th:attr="data-MaTB=${item.maTB}"><button id="check-date-btn"> Check</button></div>
                                     </div>
+
                                 </div>
                             </div>
                             <!-- Pikaday calendar -->
@@ -96,18 +98,23 @@
                                 <h2>Trạng thái: 
                                     <span th:if="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}" 
                                           th:text="${listThongtinsd[iterStat.index].trangThai}" 
-                                          style="padding-left: 5px; border: 1px solid black; background: black; color: white;">
+                                          style="padding-left: 5px;">
                                     </span>
                                     <span th:unless="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}">
                                         Có sẵn
                                     </span>
                                 </h2>
                             </div>
-                            <div class="btn"><button id="book-now-btn"> Book now</button></div>
-                                
-                            <div id="alertMessage" class="alert alert-success" style="display: none;">
-                                Đặt chỗ thành công
+                            <!--<div class="btn"><button id="book-now-btn"> Book now</button></div>-->
+                            <div class="btn" th:if="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}">
+                                <button id="book-now-btn" style="display: none;"> Book now</button>
                             </div>
+                            <div class="btn" th:unless="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}">
+                                <button id="book-now-btn"> Book now</button>
+                            </div>
+<!--                            <div id="alertMessage" class="alert alert-success" style="display: none;">
+                                Đặt chỗ thành công
+                            </div>-->
 
                             <div id="invalidDateTimeAlert" class="alert alert-danger" style="display: none;">
                                 Thời gian đặt chổ không hợp lệ.

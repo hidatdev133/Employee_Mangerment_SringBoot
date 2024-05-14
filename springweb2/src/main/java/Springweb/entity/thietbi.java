@@ -15,7 +15,7 @@ public class thietbi {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "MaTB", nullable = false)
-    private Integer MaTB;
+    private Integer maTB;
 
     @Column(name = "TenTB", nullable = false)
     private String TenTB;
@@ -26,18 +26,18 @@ public class thietbi {
     public thietbi() {
     }
 
-    public thietbi(Integer MaTB, String TenTB, String mo_tatb) {
-        this.MaTB = MaTB;
+    public thietbi(Integer maTB, String TenTB, String mo_tatb) {
+        this.maTB = maTB;
         this.TenTB = TenTB;
         this.mo_tatb = mo_tatb;
     }
 
     public Integer getMaTB() {
-        return MaTB;
+        return maTB;
     }
 
-    public void setMaTB(Integer MaTB) {
-        this.MaTB = MaTB;
+    public void setMaTB(Integer maTB) {
+        this.maTB = maTB;
     }
 
     public String getTenTB() {

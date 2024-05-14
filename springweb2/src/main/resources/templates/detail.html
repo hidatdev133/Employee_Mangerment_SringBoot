@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
     <body>
         <!-- top navbar -->
@@ -63,67 +64,57 @@
         <div class="container" id="product-cards">
             <h1 class="text-center">DETAIL</h1>
             <div class="row" style="margin-top: 30px;">
-                <div class="col-md-3 py-3 py-md-0" th:each="item, iterStat : ${thietbiop}" >
+                <div class="col-md-3 py-3 py-md-0" >
                     <div style=" justify-content: center; margin-left: 100%">
                         <img src="./images/p6.png" alt="">
                     </div>
                 </div>
 
-                <div class="py-3 py-md-0" th:each="item, iterStat : ${thietbiop}">
+                <!--<div class="py-3 py-md-0" th:each="item, iterStat : ${thietbiop}">-->
                     <div class="">
                         <div class="">
                             
-                            
-                            <h3><p>Mã thiết bị: <span th:text="${item.maTB}"></span></p></h3>
-                            <h3><p>Tên thiết bị: <span th:text="${item.tenTB}"></span></p></h3>
-                            <h3><p>Mô tả: <span th:text="${item.mo_tatb}"></span></p></h3>
+                            <h3><p>Mã thành viên: <span th:text="${thanhvien.MaTV}"></span></p></h3>
+                            <h3><p>Mã thiết bị: <span th:text="${thietbi.maTB}"></span></p></h3>
+                            <h3><p>Tên thiết bị: <span th:text="${thietbi.TenTB}"></span></p></h3>
+                            <h3><p>Mô tả: <span th:text="${thietbi.mo_tatb}"></span></p></h3>
 
                              <!-- Pikaday calendar -->
-                            <div class="py-3 py-md-0" style="margin-top: 30px;">
-                                <div class="row">
-                                    <div class="">
-                                        <h3 class="">Chọn ngày và giờ đặt chỗ</h3>
-                                        <input style="margin-left: 50px" type="datetime-local" id="bookingDateTime" name="bookingDateTime">
-                                        <div class="btn" id="maTB" th:attr="data-MaTB=${item.maTB}"><button id="check-date-btn"> Check</button></div>
+                            <!--th:object="${thongtinsd}"-->
+                                <form action="#!" th:action="@{/thongtinsd/save}" method="POST">
+                                    <div th:if="${param.missingDate}">
+                                        <div class="alert alert-danger">Bạn phải chọn ngày tháng đặt chổ.</div>
                                     </div>
-
-                                </div>
-                            </div>
-                            <!-- Pikaday calendar -->
-<!--                            <div style="display: flex; margin-top: 20px">
-                                <h2>Trạng thái: <span style="padding-left: 5px; border: 1px solid black; background: black; color: white;"></span></h2>
-                            </div>-->
-
-                            <div style="display: flex; margin-top: 20px">
-                                <h2>Trạng thái: 
-                                    <span th:if="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}" 
-                                          th:text="${listThongtinsd[iterStat.index].trangThai}" 
-                                          style="padding-left: 5px;">
-                                    </span>
-                                    <span th:unless="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}">
-                                        Có sẵn
-                                    </span>
-                                </h2>
-                            </div>
-                            <!--<div class="btn"><button id="book-now-btn"> Book now</button></div>-->
-                            <div class="btn" th:if="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}">
-                                <button id="book-now-btn" style="display: none;"> Book now</button>
-                            </div>
-                            <div class="btn" th:unless="${listThongtinsd != null && listThongtinsd.size() > iterStat.index}">
-                                <button id="book-now-btn"> Book now</button>
-                            </div>
-<!--                            <div id="alertMessage" class="alert alert-success" style="display: none;">
-                                Đặt chỗ thành công
-                            </div>-->
-
-                            <div id="invalidDateTimeAlert" class="alert alert-danger" style="display: none;">
-                                Thời gian đặt chổ không hợp lệ.
-                            </div>
+                                    <div th:if="${param.errorDate}">
+                                        <div class="alert alert-danger">Lỗi convert Date.</div>
+                                    </div>
+                                    <div th:if="${param.deviceReserved}">
+                                        <div class="alert alert-danger">Thiết bị đã được đặt chổ bởi người khác.</div>
+                                    </div>
+                                    <div th:if="${param.invalidDate}">
+                                        <div class="alert alert-danger">Thời gian đặt chổ phải lớn hơn hiện tại</div>
+                                    </div>
+                                    <div th:if="${param.success}">
+                                        <div class="alert alert-success">Đặt chỗ thành công</div>
+                                    </div>
+                                    <div th:if="${param.canReserved}">
+                                        <div class="alert alert-success">Bạn có thể đặt chổ vào hôm nay</div>
+                                    </div>
+                                    <input type="hidden" id="thanhVienId" name="thanhVienId" th:value="${thanhvien.MaTV}">
+                                    <input type="hidden" id="thietBiId" name="thietBiId" th:value="${thietbi.maTB}">
+                                    <div class="mb-4">
+                                        <label for="bookingDateTime">Chọn ngày và giờ đặt chỗ:</label>
+                                        <input type="datetime-local" id="reserveTime" name="reserveTime" onchange="checkValidReserveTime()">
+                                    </div>
+                                    <div class="mb-4">
+                                        <button id="bookNowBtn" class="btn btn-primary" type="submit">Đặt chỗ</button>
+                                    </div>
+                                </form>
                         </div>
 
                         
 
-                    </div>
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -144,33 +135,48 @@
         <!-- Pikaday JS -->
         <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
         <script>
-//            var picker = new Pikaday({
-//                field: document.getElementById('datepicker'),
-//                format: 'YYYY-MM-DD',
-//                onSelect: function(date) {
-//                    console.log('Selected date: ' + date);
-//                }
-//            });
-            
-            document.getElementById('book-now-btn').addEventListener('click', function() {
-                var bookingDateTime = document.getElementById('bookingDateTime').value;
-                if (!bookingDateTime) {
-                    alert('Bạn cần chọn ngày và giờ đặt chỗ.');
-                } else {
-                    var currentDate = new Date();
-                    var selectedDateTime = new Date(bookingDateTime);
-                    if (selectedDateTime <= currentDate) {
-                        document.getElementById('invalidDateTimeAlert').style.display = 'block';
-                        document.getElementById('alertMessage').style.display = 'none';
+//          
+             // Hàm để kiểm tra và gán giá trị từ localStorage cho trường input
+    function checkAndSetInputValue(inputId) {
+        var value = localStorage.getItem(inputId); // Lấy giá trị từ localStorage
+            if (value) {
+                document.getElementById(inputId).value = value; // Gán giá trị cho trường input
+            }
+        }
+
+        // Gọi hàm checkAndSetInputValue() khi trang được load
+        window.onload = function() {
+            checkAndSetInputValue("reserveTime");
+        };
+
+        function checkValidReserveTime() {
+            var thietBiId = document.getElementById("thietBiId").value; // Lấy giá trị của thietBiId từ input ẩn
+            var reserveTime = document.getElementById("reserveTime").value; // Lấy giá trị của reserveTime từ input datetime-local
+
+
+            console.log("chay code o day")
+            localStorage.setItem("reserveTime", reserveTime);
+            // Gửi yêu cầu AJAX
+            $.ajax({
+                type: "POST",
+                url: "/thongtinsd/checkValidReserveTime",
+                data: {
+                    thietBiId: thietBiId,
+                    reserveTime: reserveTime
+                },
+                success: function(response) {
+                    if (response.result === "success") {
+                        window.location.href = response.redirect;
                     } else {
-                        document.getElementById('invalidDateTimeAlert').style.display = 'none';
-                        document.getElementById('alertMessage').style.display = 'block';
-                        setTimeout(function(){
-                            window.location.href = "/home"; // Chuyển hướng về trang index.html sau 2 giây
-                        }, 2000);
+                        window.location.href = response.redirect;
                     }
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi (nếu cần)
+                    console.log("Error");
                 }
             });
+        }
         </script>
 
         <!-- Bootstrap JS -->

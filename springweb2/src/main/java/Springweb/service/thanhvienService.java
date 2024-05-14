@@ -25,4 +25,6 @@ public interface thanhvienService {
    String getEmail2(int matv);
    
    void updatePassword(int matv, String newPassword);
+   
+   thanhvien findById(int id);
 }

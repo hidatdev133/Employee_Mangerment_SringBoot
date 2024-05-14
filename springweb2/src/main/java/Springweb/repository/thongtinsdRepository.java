@@ -1,11 +1,7 @@
 package Springweb.repository;
 
 import Springweb.entity.thongtinsd;
-import java.sql.Timestamp;
-
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -25,4 +21,10 @@ public interface thongtinsdRepository extends CrudRepository<thongtinsd, Integer
     
 //    @Query("SELECT s FROM thongtinsd s WHERE s.MaTB = :maTB AND s.TGMuon >= :startTime")
 //    List<thongtinsd> findByMaTB(int maTB, Timestamp startTime);
+    
+    @Query("SELECT MAX(t.MaTT) FROM thongtinsd t")
+    Integer findLastId();
+    
+    @Query("SELECT t FROM thongtinsd t WHERE t.MaTB = :maTB AND t.TGDatcho IS NOT NULL")
+    List<thongtinsd> findThongTinSDByMaTBAndTGDatchoNotNull(@Param("maTB") Integer matb);
 }

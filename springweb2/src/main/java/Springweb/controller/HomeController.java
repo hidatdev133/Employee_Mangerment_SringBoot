@@ -1,27 +1,16 @@
 package springweb.controller;
 
 import Springweb.entity.thietbi;
-import Springweb.entity.thongtinsd;
 import Springweb.repository.thietbiRepository;
-import Springweb.repository.thongtinsdRepository;
-import Springweb.repository.xulyRepository;
+import Springweb.service.thanhvienServicelmpl;
 import Springweb.service.thietbiService;
 import Springweb.service.thietbiServiceImpl;
-import Springweb.service.thongtinsdService;
 import Springweb.service.thongtinsdServiceImpl;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -30,16 +19,15 @@ import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import springweb.repository.thanhvienRepository;
+import springweb.entity.thanhvien;
 
 @Controller
 public class HomeController {
 
-    @Autowired
-    private thanhvienRepository tvReposity;
+    
+     @Autowired
+    private thanhvienServicelmpl tvServiceImpl;
 
     @Autowired
     private thietbiRepository tbReposity;
@@ -47,17 +35,9 @@ public class HomeController {
     @Autowired
     private thietbiServiceImpl tbServiceImpl;
 
-    @Autowired
-    private thongtinsdRepository ttsdReposity;
     
     @Autowired
     private thongtinsdServiceImpl ttsdServiceImpl;
-    
-    @Autowired
-    private thongtinsdService ttsdService;
-
-    @Autowired
-    private xulyRepository xlReposity;
     
     @Autowired
     private thietbiService thietbiService ;
@@ -154,36 +134,53 @@ public class HomeController {
 //        return "detail";
 //    }
     
+//    @GetMapping("/detail")
+//    public String viewDetail(@RequestParam("id") int id, Model model) {
+//        System.out.println("details");
+//        Optional<thietbi> thietbiop = tbReposity.findById(id);
+//        Iterable<thongtinsd> listTtsd = null; // Khởi tạo listTtsd là null
+//
+//        if (id != 0) {
+//            LocalDateTime startTime = LocalDateTime.now();
+////            Timestamp timestamp = Timestamp.valueOf(startTime);
+//            listTtsd = ttsdService.findByMaTB(id);
+//            if (listTtsd != null && !((Collection<?>) listTtsd).isEmpty()) {
+//                for (thongtinsd ttsd : listTtsd) {
+//                    ttsd.setTrangThai("Không có sẵn");
+//                }
+//            }
+//            model.addAttribute("listThongtinsd", listTtsd);
+//        }
+//
+//        if (thietbiop.isPresent()) {
+//            thietbi tb = thietbiop.get();
+//            if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
+//                tb.setMo_tatb("Description not available");
+//            }
+//            model.addAttribute("thietbiop", tb);
+//        } else {
+//            System.out.println("Không có thiết bị này");
+//            // Handle the case where the device ID is not found
+//        }
+//
+//        return "detail";
+//    }
+    
+    
     @GetMapping("/detail")
-    public String viewDetail(@RequestParam("id") int id, Model model) {
-        System.out.println("details");
-        Optional<thietbi> thietbiop = tbReposity.findById(id);
-        Iterable<thongtinsd> listTtsd = null; // Khởi tạo listTtsd là null
+    public String GoDetail(@RequestParam("id") int id, @RequestParam(value = "error", required = false) String error, Model model) {
+        thietbi tb = tbServiceImpl.findByMaTB(id);
+        thanhvien tv = tvServiceImpl.findById(1120010007);
 
-        if (id != 0) {
-            LocalDateTime startTime = LocalDateTime.now();
-//            Timestamp timestamp = Timestamp.valueOf(startTime);
-            listTtsd = ttsdService.findByMaTB(id);
-            if (listTtsd != null && !((Collection<?>) listTtsd).isEmpty()) {
-                for (thongtinsd ttsd : listTtsd) {
-                    ttsd.setTrangThai("Không có sẵn");
-                }
-            }
-            model.addAttribute("listThongtinsd", listTtsd);
+        // Kiểm tra nếu có lỗi
+        if (error != null && error.equals("missingDate")) {
+            model.addAttribute("error", "Bạn phải chọn ngày tháng đặt chỗ.");
         }
 
-        if (thietbiop.isPresent()) {
-            thietbi tb = thietbiop.get();
-            if (tb.getMo_tatb() == null || tb.getMo_tatb().trim().isEmpty()) {
-                tb.setMo_tatb("Description not available");
-            }
-            model.addAttribute("thietbiop", tb);
-        } else {
-            System.out.println("Không có thiết bị này");
-            // Handle the case where the device ID is not found
-        }
-
-        return "detail";
+        model.addAttribute("thietbi", tb);
+        model.addAttribute("thanhvien", tv);
+        return "detail" + (error != null ? error : "");
     }
+
     
 }

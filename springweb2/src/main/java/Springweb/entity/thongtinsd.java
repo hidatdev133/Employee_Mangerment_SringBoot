@@ -1,23 +1,17 @@
 package Springweb.entity;
 
-import com.sun.istack.NotNull;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table
 public class thongtinsd {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "MaTT", nullable = false)
     private Integer MaTT;
 
@@ -27,27 +21,24 @@ public class thongtinsd {
     @Column(name = "MaTB", nullable = true)
     private Integer MaTB;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "TGVao", nullable = true)
-    private Date TGVao;
+    private Timestamp TGVao;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "TGMuon", nullable = true)
-    private Date TGMuon;
+    private Timestamp TGMuon;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "TGTra", nullable = true)
-    private Date TGTra;
+    private Timestamp TGTra;
 
     @Column(name = "TGDatcho", nullable = true)
-    private LocalDateTime TGDatcho;
+    private Timestamp TGDatcho;
 
     private String trangThai;
 
     public thongtinsd() {
     }
 
-    public thongtinsd(Integer MaTT, Integer MaTV, Integer MaTB, Date TGVao, Date TGMuon, Date TGTra, LocalDateTime  TGDatcho) {
+    public thongtinsd(Integer MaTT, Integer MaTV, Integer MaTB, Timestamp TGVao, Timestamp TGMuon, Timestamp TGTra, Timestamp  TGDatcho) {
         this.MaTT = MaTT;
         this.MaTV = MaTV;
         this.MaTB = MaTB;
@@ -57,11 +48,11 @@ public class thongtinsd {
         this.TGDatcho = TGDatcho;
     }
 
-    public LocalDateTime  getTGDatcho() {
+    public Timestamp  getTGDatcho() {
         return TGDatcho;
     }
 
-    public void setTGDatcho(LocalDateTime  TGDatcho) {
+    public void setTGDatcho(Timestamp  TGDatcho) {
         this.TGDatcho = TGDatcho;
     }
 
@@ -89,27 +80,27 @@ public class thongtinsd {
         this.MaTB = MaTB;
     }
 
-    public Date getTGVao() {
+    public Timestamp getTGVao() {
         return TGVao;
     }
 
-    public void setTGVao(Date TGVao) {
+    public void setTGVao(Timestamp TGVao) {
         this.TGVao = TGVao;
     }
 
-    public Date getTGMuon() {
+    public Timestamp getTGMuon() {
         return TGMuon;
     }
 
-    public void setTGMuon(Date TGMuon) {
+    public void setTGMuon(Timestamp TGMuon) {
         this.TGMuon = TGMuon;
     }
 
-    public Date getTGTra() {
+    public Timestamp getTGTra() {
         return TGTra;
     }
 
-    public void setTGTra(Date TGTra) {
+    public void setTGTra(Timestamp TGTra) {
         this.TGTra = TGTra;
     }
 

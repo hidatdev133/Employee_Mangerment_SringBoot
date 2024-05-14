@@ -53,4 +53,8 @@ public class thietbiServiceImpl implements thietbiService {
         return tbRepository.searchTB(keyword);
     }
 
+    
+    public thietbi findByMaTB(Integer maTB){
+        return tbRepository.findByMaTB(maTB);
+    }
 }

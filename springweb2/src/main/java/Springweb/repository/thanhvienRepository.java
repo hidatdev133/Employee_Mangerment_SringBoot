@@ -25,5 +25,6 @@ public interface thanhvienRepository extends CrudRepository<thanhvien, Integer> 
     
     @Query("SELECT t.Email FROM thanhvien t WHERE t.MaTV = ?1")
     String findEmailbyMaTV(int matv);
+    
 }
 

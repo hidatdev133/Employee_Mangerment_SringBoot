@@ -50,8 +50,7 @@ public class thongtinsd {
     private LocalDateTime TGDatcho;
 
     private String trangThai;
-    
-    private String tenTB;
+
     
        @ManyToOne
     @JoinColumn(name = "MaTB", insertable = false, updatable = false)
@@ -69,16 +68,7 @@ public class thongtinsd {
         this.TGTra = TGTra;
         this.TGDatcho = TGDatcho;
     }
- public thongtinsd(Integer MaTT, Integer MaTV, Integer MaTB, Date TGVao, Date TGMuon, Date TGTra, LocalDateTime  TGDatcho, String TenTB) {
-        this.MaTT = MaTT;
-        this.MaTV = MaTV;
-        this.MaTB = MaTB;
-        this.TGVao = TGVao;
-        this.TGMuon = TGMuon;
-        this.TGTra = TGTra;
-        this.TGDatcho = TGDatcho;
-        this.tenTB=tenTB;
-    }
+
 
     public LocalDateTime  getTGDatcho() {
         return TGDatcho;
@@ -144,13 +134,7 @@ public class thongtinsd {
         this.trangThai = trangThai;
     }
 
-    public String getTenTB() {
-        return tenTB;
-    }
-
-    public void setTenTB(String tenTB) {
-        this.tenTB = tenTB;
-    }
+ 
     
     
   

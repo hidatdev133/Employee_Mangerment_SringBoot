@@ -13,6 +13,7 @@ public interface thietbiRepository extends CrudRepository<thietbi, Integer> {
     @Query("SELECT t FROM thietbi t WHERE t.TenTB LIKE %:keyword%")
     List<thietbi> searchTB(String keyword);
     
+   
  
     
 }

@@ -6,6 +6,7 @@ import Springweb.repository.thongtinsdRepository;
 import Springweb.repository.xulyRepository;
 import Springweb.util.ForgotPassWordEmail;
 import Springweb.util.UpdatePassWordEmail;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,14 +68,17 @@ public class thanhvienController {
         int tongvp=xlRepository.getTongViPham(matv);
         int dangvp=xlRepository.getDangXuLy(matv);
         List<thongtinsd>ttList=ttsdRepository.getListsd();
+        List<thongtinsd>listdangmuon=ttsdRepository.getListdangmuon();
+        List<thongtinsd>listdamuon=ttsdRepository.getListdamuon();
         List<xuly> listxl=xlRepository.Listxl(matv);
          model.addAttribute("username", username);
         model.addAttribute("thanhvien",tv);
         model.addAttribute("tongvipham", tongvp);
         model.addAttribute("dangvipham",dangvp);
         model.addAttribute("listdangdat",ttList);
+        model.addAttribute("listdangmuon",listdangmuon);
+        model.addAttribute("listdamuon",listdamuon);
         model.addAttribute("listxl",listxl);
-        
                 return "/profile";
     }
 

@@ -52,5 +52,7 @@ public class thietbiServiceImpl implements thietbiService {
     public List<thietbi> searchTB(String keyword) {
         return tbRepository.searchTB(keyword);
     }
+    
+ 
 
 }

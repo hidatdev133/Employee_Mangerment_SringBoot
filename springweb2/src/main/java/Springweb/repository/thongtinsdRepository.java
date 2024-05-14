@@ -22,8 +22,18 @@ public interface thongtinsdRepository extends CrudRepository<thongtinsd, Integer
     @Query("SELECT s FROM thongtinsd s WHERE s.MaTB = :maTB AND (s.TGMuon IS NULL OR s.TGTra IS NULL)")
     List<thongtinsd> findByMaTB(int maTB);
     
-       @Query("SELECT s FROM thongtinsd s WHERE s.TGDatcho is not NULL AND s.TGMuon is NULL ")
+       @Query("SELECT s FROM thongtinsd s  WHERE s.TGDatcho is not NULL AND s.TGMuon is NULL  ")
     List<thongtinsd> getListsd();
+    
+     @Query("SELECT s FROM thongtinsd s  WHERE s.TGMuon is not NULL AND s.TGTra is NULL  ")
+    List<thongtinsd> getListdangmuon();
+    
+    
+     @Query("SELECT s FROM thongtinsd s  WHERE s.TGMuon is not NULL AND s.TGTra is not NULL  ")
+    List<thongtinsd> getListdamuon();
+    
+    
 //    @Query("SELECT s FROM thongtinsd s WHERE s.MaTB = :maTB AND s.TGMuon >= :startTime")
 //    List<thongtinsd> findByMaTB(int maTB, Timestamp startTime);
+ 
 }

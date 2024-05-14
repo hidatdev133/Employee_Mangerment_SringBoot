@@ -1,12 +1,16 @@
 package Springweb.entity;
 
 import com.sun.istack.NotNull;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "thietbi")
@@ -22,6 +26,9 @@ public class thietbi {
 
     @Column(name = "mo_tatb", nullable = true)
     private String mo_tatb;
+    
+     @OneToMany(mappedBy = "thietbi", cascade = CascadeType.ALL)
+    private List<thongtinsd> listTtsd;
 
     public thietbi() {
     }
@@ -55,5 +62,6 @@ public class thietbi {
     public void setMo_tatb(String mo_tatb) {
         this.mo_tatb = mo_tatb;
     }
+    
 
 }

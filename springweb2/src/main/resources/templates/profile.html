@@ -90,7 +90,10 @@
             <th>
                    Mã thiết bị
             </th>
-           
+           <th>
+                    Tên thiết bị
+            </th>
+
              <th>
                     Thời gian đặt chỗ
             </th>
@@ -100,13 +103,84 @@
             <tbody>
               <tr th:each="row : ${listdangdat}">
                             <td th:text="${row.maTB}"></td>
-                           
+                             <td th:text="${row.thietbi.TenTB}"></td>
                             <td th:text="${row.TGDatcho}" ></td>
                          
                         </tr>
             </tbody>
         </table>
     </div>
+    
+    
+     <div>
+        <h3>Thiết bị đang mượn</h3>
+        <table style="width: 1000px" class="table table-bordered">
+            <thead>
+            <th>
+                   Mã thiết bị
+            </th>
+           <th>
+                    Tên thiết bị
+            </th>
+
+             <th>
+                    Thời gian đặt chỗ
+            </th>
+             <th>
+                    Thời gian mượn
+            </th>
+           
+            </thead>
+           
+            <tbody>
+              <tr th:each="row : ${listdangmuon}">
+                            <td th:text="${row.maTB}"></td>
+                             <td th:text="${row.thietbi.TenTB}"></td>
+                            <td th:text="${row.TGDatcho}" ></td>
+                             <td th:text="${row.TGMuon}" ></td>
+                         
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+    
+     <div>
+        <h3>Thiết bị đã mượn</h3>
+        <table style="width: 1000px" class="table table-bordered">
+            <thead>
+            <th>
+                   Mã thiết bị
+            </th>
+           <th>
+                    Tên thiết bị
+            </th>
+
+             <th>
+                    Thời gian đặt chỗ
+            </th>
+             <th>
+                    Thời gian mượn
+            </th>
+             <th>
+                    Thời gian trả
+            </th>
+           
+            </thead>
+           
+            <tbody>
+              <tr th:each="row : ${listdamuon}">
+                            <td th:text="${row.maTB}"></td>
+                             <td th:text="${row.thietbi.TenTB}"></td>
+                            <td th:text="${row.TGDatcho}" ></td>
+                             <td th:text="${row.TGMuon}" ></td>
+                              <td th:text="${row.TGTra}" ></td>
+                         
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
     
       <div>
         <h3>Thông tin vi phạm</h3>

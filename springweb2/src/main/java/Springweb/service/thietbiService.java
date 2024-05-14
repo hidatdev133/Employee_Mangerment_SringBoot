@@ -22,4 +22,6 @@ public interface thietbiService {
     public void deleteAll();
     
     public List<thietbi> searchTB(String keyword);
+    
+ 
 }

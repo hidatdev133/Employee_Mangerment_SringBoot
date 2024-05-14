@@ -69,5 +69,15 @@ public class thongtinsdServiceImpl implements thongtinsdService {
         return ttsdRepository.getListsd();
     }
     
+    @Override
+    public List <thongtinsd> getListdangmuon(){
+        return ttsdRepository.getListdangmuon();
+    }
+    
+    @Override 
+     public List<thongtinsd> getListdamuon(){
+    return ttsdRepository.getListdamuon();
+    }
+    
 
 }

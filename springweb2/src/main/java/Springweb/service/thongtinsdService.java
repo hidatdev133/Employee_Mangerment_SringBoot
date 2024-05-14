@@ -29,4 +29,8 @@ public interface thongtinsdService {
     public List<thongtinsd> findByMaTB(int maTB);
     
     public List<thongtinsd> getListsd();
+    
+    public List <thongtinsd> getListdangmuon();
+    
+    public List <thongtinsd> getListdamuon();
 }

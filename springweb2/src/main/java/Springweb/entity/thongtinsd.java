@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,14 +20,19 @@ public class thongtinsd {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+  
+    
     @Column(name = "MaTT", nullable = false)
     private Integer MaTT;
 
     @Column(name = "MaTV", nullable = false)
     private Integer MaTV;
-
-    @Column(name = "MaTB", nullable = true)
+   
+//    @Column(name = "MaTB", nullable = true)  
+    @Column
+  
     private Integer MaTB;
+   
 
     @Temporal(TemporalType.DATE)
     @Column(name = "TGVao", nullable = true)
@@ -43,6 +50,12 @@ public class thongtinsd {
     private LocalDateTime TGDatcho;
 
     private String trangThai;
+    
+    private String tenTB;
+    
+       @ManyToOne
+    @JoinColumn(name = "MaTB", insertable = false, updatable = false)
+    public thietbi thietbi;
 
     public thongtinsd() {
     }
@@ -55,6 +68,16 @@ public class thongtinsd {
         this.TGMuon = TGMuon;
         this.TGTra = TGTra;
         this.TGDatcho = TGDatcho;
+    }
+ public thongtinsd(Integer MaTT, Integer MaTV, Integer MaTB, Date TGVao, Date TGMuon, Date TGTra, LocalDateTime  TGDatcho, String TenTB) {
+        this.MaTT = MaTT;
+        this.MaTV = MaTV;
+        this.MaTB = MaTB;
+        this.TGVao = TGVao;
+        this.TGMuon = TGMuon;
+        this.TGTra = TGTra;
+        this.TGDatcho = TGDatcho;
+        this.tenTB=tenTB;
     }
 
     public LocalDateTime  getTGDatcho() {
@@ -121,4 +144,14 @@ public class thongtinsd {
         this.trangThai = trangThai;
     }
 
+    public String getTenTB() {
+        return tenTB;
+    }
+
+    public void setTenTB(String tenTB) {
+        this.tenTB = tenTB;
+    }
+    
+    
+  
 }
